@@ -22,6 +22,9 @@ extra_css:
 plugins:
   - search:
       lang: ko
+  - redirects:
+      redirect_maps:
+        index.md: vbscript_core_summary/00_getting_started/learning_guide.md
 
 markdown_extensions:
   - admonition
@@ -50,7 +53,6 @@ markdown_extensions:
   - pymdownx.mark
 
 nav:
-  - Home: index.md
 
   - VBScript 실전 개발 가이드:
       - 00. 학습 시작:
