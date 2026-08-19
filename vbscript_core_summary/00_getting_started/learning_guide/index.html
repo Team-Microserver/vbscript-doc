@@ -1,0 +1,1611 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="금융 SI 화면개발과 레거시 시스템 유지보수를 위한 VBScript 학습 가이드">
+      
+      
+        <meta name="author" content="Team VBScript Study">
+      
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../vbscript_overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>학습 가이드 - VBScript 실전 개발 가이드</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../../.." title="VBScript 실전 개발 가이드" class="md-header__button md-logo" aria-label="VBScript 실전 개발 가이드" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VBScript 실전 개발 가이드
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              학습 가이드
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="공유" aria-label="공유" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  VBScript 실전 개발 가이드
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VBScript 실전 개발 가이드" class="md-nav__button md-logo" aria-label="VBScript 실전 개발 가이드" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VBScript 실전 개발 가이드
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VBScript 실전 개발 가이드
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VBScript 실전 개발 가이드
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. 학습 시작
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    00. 학습 시작
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    학습 가이드
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    학습 가이드
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 이 가이드에서 무엇을 배우는가
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 전체 학습 흐름
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 1단계: 먼저 소스를 읽을 수 있어야 한다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 2단계: 값의 상태를 구분한다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-3-sub-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 3단계: Sub와 Function을 구분한다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 4단계: 화면 처리 흐름을 읽는다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 학습 완료 후 도달할 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 알파로스튜디오 학습으로 연결하기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 권장 학습 순서
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vbscript_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VBScript 이해하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    학습 및 실습 환경
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source_reading_strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    소스 읽는 순서
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_language_basics/language_basics_overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. 기본 문법
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_control_flow/conditions/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. 제어문
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_procedures/sub_function/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03. 프로시저와 함수
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_data_handling/null_empty_nothing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04. 데이터 처리
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_objects/object_basics/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05. 객체 사용
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_error_handling/error_handling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06. 오류 처리
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_practical_patterns/input_validation/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07. 실무 개발 패턴
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_alpha_studio/alpha_studio_adaptation_approach/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08. 알파로스튜디오 적응
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../09_debugging/debugging_logging/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09. 디버깅
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../10_practice/step_by_step_practice/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 실습
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../appendix/java_comparison/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    부록
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 이 가이드에서 무엇을 배우는가
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 전체 학습 흐름
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 1단계: 먼저 소스를 읽을 수 있어야 한다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 2단계: 값의 상태를 구분한다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-3-sub-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 3단계: Sub와 Function을 구분한다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 4단계: 화면 처리 흐름을 읽는다
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 학습 완료 후 도달할 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 알파로스튜디오 학습으로 연결하기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 권장 학습 순서
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">학습 가이드<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>VBScript를 처음 접하면 문법 자체보다 <strong>왜 코드가 이런 형태로 작성되어 있는지</strong>, 그리고 <strong>실제 화면의 이벤트와 업무 로직이 어떤 순서로 연결되는지</strong>가 더 낯설게 느껴질 수 있습니다. Java나 JavaScript 경험이 있다면 세미콜론이 없고, 변수 타입을 명시적으로 선언하지 않으며, <code>End If</code>, <code>End Sub</code>, <code>End Function</code>처럼 블록의 끝을 직접 표시하는 문법이 특히 어색할 수 있습니다.</p>
+<p>이 학습 가이드는 문법을 하나씩 암기하는 방식보다 <strong>기존 금융 시스템 화면 소스를 읽고, 수정하고, 신규 기능을 추가할 수 있는 수준까지 빠르게 올라가는 것</strong>을 목표로 합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">학습의 기준</p>
+<p>목표는 VBScript 언어 전문가가 되는 것이 아닙니다. 금융 SI 프로젝트에서 기존 코드를 안정적으로 이해하고, 영향 범위를 판단하고, 필요한 로직을 수정할 수 있는 개발자가 되는 것이 우선입니다.</p>
+</div>
+<h2 id="1">1. 이 가이드에서 무엇을 배우는가<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>레거시 금융 시스템의 화면 소스에서는 다음과 같은 처리들이 반복해서 등장합니다.</p>
+<ul>
+<li>화면이 열릴 때 초기값을 설정하는 처리</li>
+<li>버튼이나 입력 컨트롤에서 발생하는 이벤트 처리</li>
+<li>필수값과 입력 형식을 검사하는 검증 로직</li>
+<li>조회·저장 전에 서버로 전달할 값을 구성하는 처리</li>
+<li>서버 호출 전후의 상태 및 반환값 검사</li>
+<li>조회 결과를 화면 컨트롤이나 데이터 영역에 반영하는 처리</li>
+<li>공통 함수나 공통 모듈 호출</li>
+<li>오류 발생 시 메시지를 표시하거나 후속 처리를 중단하는 로직</li>
+</ul>
+<p>따라서 본 가이드는 언어 문법을 독립된 지식으로 외우기보다 <strong>실제 화면 개발의 처리 흐름 안에서 문법을 이해하는 방식</strong>으로 구성합니다.</p>
+<div class="admonition tip">
+<p class="admonition-title">추천 학습 방법</p>
+<p>처음부터 모든 문법을 외우려고 하지 마세요. <code>Dim</code>, <code>If</code>, <code>For</code>, <code>Sub</code>, <code>Function</code>, <code>Set</code>, <code>On Error Resume Next</code>를 먼저 익히고, 실제 프로젝트 화면 소스를 읽으면서 필요한 문법을 하나씩 확장하는 편이 훨씬 효율적입니다.</p>
+</div>
+<h2 id="2">2. 전체 학습 흐름<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+    A[VBScript 개요] --&gt; B[기본 문법]
+    B --&gt; C[조건문과 반복문]
+    C --&gt; D[Sub와 Function]
+    D --&gt; E[데이터와 객체]
+    E --&gt; F[오류 처리]
+    F --&gt; G[화면 이벤트 패턴]
+    G --&gt; H[알파로스튜디오 소스 분석]
+    H --&gt; I[실전 코드 수정]</code></pre>
+<p>처음에는 <strong>코드를 읽는 데 필요한 최소 문법</strong>부터 시작합니다. 그 다음 값의 상태와 형 변환을 익히고, <code>Sub</code>와 <code>Function</code>을 통해 화면 이벤트와 공통 함수의 구조를 이해합니다. 이후 객체, 오류 처리, 화면 개발 패턴까지 확장한 뒤 실제 프로젝트 소스 분석으로 연결합니다.</p>
+<h2 id="3-1">3. 1단계: 먼저 소스를 읽을 수 있어야 한다<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h2>
+<p>처음에는 아래 정도의 코드가 어떤 순서로 실행되는지만 읽을 수 있어도 상당수의 화면 로직을 따라갈 수 있습니다.</p>
+<div class="admonition example">
+<p class="admonition-title">가장 먼저 읽을 수 있어야 하는 코드</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Dim customerName
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>customerName = &quot;KIM&quot;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>If customerName &lt;&gt; &quot;&quot; Then
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    Call ShowCustomer(customerName)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>End If
+</span></code></pre></div>
+</div>
+<p>이 코드를 문법 단위로만 보면 <code>Dim</code>, 대입, <code>If</code>, <code>Call</code>이 등장합니다. 하지만 실무에서는 다음과 같이 <strong>처리 흐름</strong>으로 읽는 습관이 중요합니다.</p>
+<ol>
+<li><code>customerName</code>이라는 변수를 준비한다.</li>
+<li>변수에 <code>"KIM"</code> 값을 넣는다.</li>
+<li>값이 빈 문자열이 아닌지 확인한다.</li>
+<li>값이 존재하면 <code>ShowCustomer</code> 프로시저를 호출한다.</li>
+</ol>
+<p>즉, 처음부터 모든 키워드의 세부 규칙을 외우기보다 <strong>변수 준비 → 값 설정 → 조건 검사 → 다음 처리 호출</strong>이라는 흐름을 읽는 것이 먼저입니다.</p>
+<h2 id="4-2">4. 2단계: 값의 상태를 구분한다<a class="headerlink" href="#4-2" title="Permanent link">&para;</a></h2>
+<p>VBScript에서는 <code>Empty</code>, <code>Null</code>, <code>Nothing</code>, 빈 문자열 <code>""</code>이 서로 같은 의미가 아닙니다. 이 차이는 특히 DB 조회 결과, 선택값, 초기화되지 않은 변수, 객체 참조를 다룰 때 중요합니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">초보자가 자주 실수하는 부분</p>
+<p><code>If value = "" Then</code> 하나만으로 모든 '빈 값'을 검사할 수 있다고 생각하면 안 됩니다. DB 결과처럼 <code>Null</code>이 들어올 수 있는 값은 <code>IsNull(value)</code> 검사가 필요할 수 있고, 객체가 없는 상태는 <code>Nothing</code>으로 확인해야 합니다.</p>
+</div>
+<p>이 구분을 제대로 이해하지 못하면 화면에서는 정상처럼 보이더라도 특정 데이터에서만 오류가 발생하거나, 조건식이 예상과 다르게 평가되는 문제가 생길 수 있습니다.</p>
+<h2 id="5-3-sub-function">5. 3단계: Sub와 Function을 구분한다<a class="headerlink" href="#5-3-sub-function" title="Permanent link">&para;</a></h2>
+<p>VBScript의 실무 코드는 대부분 여러 개의 <code>Sub</code>와 <code>Function</code>이 연결되면서 동작합니다.</p>
+<ul>
+<li><code>Sub</code>는 특정 <strong>동작을 수행</strong>하는 데 주로 사용합니다.</li>
+<li><code>Function</code>은 계산이나 검증을 수행한 뒤 <strong>결과값을 반환</strong>하는 데 주로 사용합니다.</li>
+</ul>
+<p>화면 버튼 이벤트는 <code>Sub</code> 형태로 작성되는 경우가 많고, 공통 검증이나 값 변환 로직은 <code>Function</code>으로 분리되는 경우가 많습니다.</p>
+<div class="admonition example">
+<p class="admonition-title">Sub와 Function의 역할 차이</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Sub btnSearch_Click()
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    If ValidateSearchCondition() = False Then
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        Exit Sub
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    End If
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    Call SearchCustomer()
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>End Sub
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Function ValidateSearchCondition()
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    If Trim(txtCustomerName.Text) = &quot;&quot; Then
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        MsgBox &quot;고객명을 입력하세요.&quot;
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        ValidateSearchCondition = False
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        Exit Function
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    End If
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    ValidateSearchCondition = True
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>End Function
+</span></code></pre></div>
+</div>
+<p>이 예제에서 버튼 클릭 이벤트는 전체 흐름을 제어하고, <code>ValidateSearchCondition</code> 함수는 입력값 검증이라는 하나의 책임을 담당합니다.</p>
+<h2 id="6-4">6. 4단계: 화면 처리 흐름을 읽는다<a class="headerlink" href="#6-4" title="Permanent link">&para;</a></h2>
+<p>실무 화면을 분석할 때는 개별 함수 이름보다 <strong>화면에서 서버까지 이어지는 흐름</strong>을 먼저 찾는 것이 좋습니다.</p>
+<pre class="mermaid"><code>flowchart TD
+    A[버튼 클릭 이벤트] --&gt; B[입력값 검증]
+    B --&gt; C[조회/저장 조건 생성]
+    C --&gt; D[공통 함수 또는 서버 호출]
+    D --&gt; E[응답 및 오류 확인]
+    E --&gt; F[화면 데이터 반영]</code></pre>
+<p>낯선 공통 함수가 여러 개 등장하더라도 이 흐름을 기준으로 추적하면 현재 코드가 <strong>입력 단계인지, 호출 준비 단계인지, 서버 호출 단계인지, 응답 처리 단계인지</strong>를 구분할 수 있습니다.</p>
+<h2 id="7">7. 학습 완료 후 도달할 목표<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>학습을 진행한 뒤에는 다음 코드를 보고 단순히 문법만 해석하는 것이 아니라 <strong>전체 처리 의도</strong>를 설명할 수 있어야 합니다.</p>
+<div class="admonition example">
+<p class="admonition-title">학습 목표 코드</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Sub btnSearch_Click()
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    Dim accountNo
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    accountNo = Trim(txtAccountNo.Text)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    If accountNo = &quot;&quot; Then
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        MsgBox &quot;계좌번호를 입력하세요.&quot;
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        Exit Sub
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    End If
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    Call SearchAccount(accountNo)
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>End Sub
+</span></code></pre></div>
+</div>
+<p>이 코드는 짧지만 실무 화면에서 반복해서 등장하는 핵심 요소를 포함합니다.</p>
+<ul>
+<li>버튼 클릭 이벤트</li>
+<li>지역 변수 선언</li>
+<li>입력 문자열 정리</li>
+<li>필수값 검사</li>
+<li>사용자 메시지 표시</li>
+<li>조건 불충족 시 조기 종료</li>
+<li>실제 조회 처리를 수행하는 프로시저 호출</li>
+</ul>
+<p>궁극적으로는 이런 코드를 보자마자 <strong>사용자 입력 → 검증 → 정상인 경우 조회 호출</strong>이라는 흐름을 빠르게 읽을 수 있어야 합니다.</p>
+<h2 id="8">8. 알파로스튜디오 학습으로 연결하기<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p>알파로스튜디오와 같은 전용 화면 개발 도구에서는 프로젝트별 컨트롤 API, 공통 함수, 데이터셋 처리 방식, 서버 호출 규칙이 존재할 수 있습니다. 이런 내용은 실제 프로젝트 표준과 기존 소스를 확인해야 정확하게 알 수 있습니다.</p>
+<p>따라서 이 가이드에서는 공개적으로 검증되지 않은 제품 전용 API를 임의로 정의하지 않습니다. 대신 다음 능력을 먼저 만드는 데 집중합니다.</p>
+<ol>
+<li>이벤트 시작점을 찾는다.</li>
+<li>입력값을 어디에서 읽는지 찾는다.</li>
+<li>검증 함수와 공통 함수 호출을 추적한다.</li>
+<li>서버 호출 전 데이터를 어떻게 구성하는지 확인한다.</li>
+<li>응답 데이터가 화면에 어떻게 반영되는지 확인한다.</li>
+<li>동일한 패턴을 가진 기존 정상 화면과 비교한다.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">프로젝트 투입 후 가장 좋은 학습 자료</p>
+<p>실제 프로젝트에 들어가면 문서보다 <strong>정상 동작하는 기존 조회 화면과 저장 화면</strong>이 가장 중요한 참고 자료가 됩니다. 하나의 정상 화면을 기준 화면으로 정하고 이벤트부터 서버 호출, 응답 처리까지 끝까지 추적해보는 것이 효과적입니다.</p>
+</div>
+<h2 id="9">9. 권장 학습 순서<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p>처음부터 모든 문서를 한 번에 읽기보다 다음 순서로 진행하는 것을 권장합니다.</p>
+<ol>
+<li><strong>VBScript 이해하기</strong>에서 언어의 특징과 코드 형태를 익힙니다.</li>
+<li><strong>기본 문법</strong>에서 변수, Variant, 연산자, 문자열 처리를 익힙니다.</li>
+<li><strong>제어문</strong>에서 조건과 반복 흐름을 익힙니다.</li>
+<li><strong>프로시저와 함수</strong>에서 <code>Sub</code>, <code>Function</code>, 매개변수 전달을 익힙니다.</li>
+<li><strong>데이터 처리와 객체 사용</strong>에서 <code>Null</code>, <code>Empty</code>, <code>Nothing</code>, <code>Set</code>을 구분합니다.</li>
+<li><strong>오류 처리</strong>에서 기존 레거시 코드의 오류 처리 방식을 이해합니다.</li>
+<li><strong>실무 개발 패턴</strong>에서 화면 이벤트와 조회·저장 구조를 학습합니다.</li>
+<li><strong>알파로스튜디오 적응</strong>에서 실제 프로젝트 소스 분석 방법을 익힙니다.</li>
+<li>마지막으로 <strong>실습</strong> 문서를 이용해 직접 코드를 읽고 수정합니다.</li>
+</ol>
+<p>이 순서대로 진행하면 VBScript 문법을 개별적으로 암기하는 데 그치지 않고, 실제 프로젝트 화면 소스를 분석하는 능력까지 자연스럽게 연결할 수 있습니다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "navigation.prune", "content.code.copy", "content.code.annotate", "content.tabs.link", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
