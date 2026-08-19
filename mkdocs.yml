@@ -1,1 +1,119 @@
-site_name: My Docs
+site_name: VBScript 실전 개발 가이드
+site_description: 금융 SI 화면개발과 레거시 시스템 유지보수를 위한 VBScript 학습 가이드
+site_author: Team VBScript Study
+docs_dir: docs
+
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.prune
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - search.highlight
+    - search.share
+
+extra_css:
+  - assets/css/extra.css
+
+plugins:
+  - search:
+      lang: ko
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+  - pymdownx.mark
+
+nav:
+  - Home: index.md
+
+  - VBScript 실전 개발 가이드:
+      - 00. 학습 시작:
+          - 학습 가이드: vbscript_core_summary/00_getting_started/learning_guide.md
+          - VBScript 이해하기: vbscript_core_summary/00_getting_started/vbscript_overview.md
+          - 학습 및 실습 환경: vbscript_core_summary/00_getting_started/learning_environment.md
+          - 소스 읽는 순서: vbscript_core_summary/00_getting_started/source_reading_strategy.md
+
+      - 01. 기본 문법:
+          - 기본 문법 개요: vbscript_core_summary/01_language_basics/language_basics_overview.md
+          - 변수와 상수: vbscript_core_summary/01_language_basics/variables_constants.md
+          - 데이터 형식과 Variant: vbscript_core_summary/01_language_basics/data_types_variant.md
+          - 연산자와 표현식: vbscript_core_summary/01_language_basics/operators_expressions.md
+          - 문자열 처리: vbscript_core_summary/01_language_basics/string_handling.md
+          - 날짜와 숫자 처리: vbscript_core_summary/01_language_basics/date_number_handling.md
+
+      - 02. 제어문:
+          - 조건문: vbscript_core_summary/02_control_flow/conditions.md
+          - 반복문: vbscript_core_summary/02_control_flow/loops.md
+          - 배열과 반복 처리: vbscript_core_summary/02_control_flow/arrays.md
+
+      - 03. 프로시저와 함수:
+          - Sub와 Function: vbscript_core_summary/03_procedures/sub_function.md
+          - 매개변수와 ByRef/ByVal: vbscript_core_summary/03_procedures/parameters.md
+          - 스코프와 코드 구조화: vbscript_core_summary/03_procedures/scope_structure.md
+
+      - 04. 데이터 처리:
+          - Null, Empty, Nothing: vbscript_core_summary/04_data_handling/null_empty_nothing.md
+          - 형 변환: vbscript_core_summary/04_data_handling/type_conversion.md
+          - Dictionary와 컬렉션 패턴: vbscript_core_summary/04_data_handling/dictionary_patterns.md
+
+      - 05. 객체 사용:
+          - 객체와 Set: vbscript_core_summary/05_objects/object_basics.md
+          - CreateObject와 COM 개념: vbscript_core_summary/05_objects/createobject_com.md
+
+      - 06. 오류 처리:
+          - VBScript 오류 처리: vbscript_core_summary/06_error_handling/error_handling.md
+          - 안전한 방어 코딩: vbscript_core_summary/06_error_handling/defensive_coding.md
+
+      - 07. 실무 개발 패턴:
+          - 입력값 검증: vbscript_core_summary/07_practical_patterns/input_validation.md
+          - 화면 이벤트 패턴: vbscript_core_summary/07_practical_patterns/ui_event_patterns.md
+          - 조회·저장 처리 패턴: vbscript_core_summary/07_practical_patterns/query_save_patterns.md
+          - 공통 함수 설계: vbscript_core_summary/07_practical_patterns/common_function_patterns.md
+
+      - 08. 알파로스튜디오 적응:
+          - 적용 접근 방법: vbscript_core_summary/08_alpha_studio/alpha_studio_adaptation_approach.md
+          - 기존 화면 분석법: vbscript_core_summary/08_alpha_studio/existing_screen_analysis.md
+          - 이벤트와 데이터 흐름 추적: vbscript_core_summary/08_alpha_studio/event_data_flow.md
+          - 프로젝트 투입 첫 주 체크리스트: vbscript_core_summary/08_alpha_studio/first_week_checklist.md
+
+      - 09. 디버깅:
+          - 디버깅과 로그 추적: vbscript_core_summary/09_debugging/debugging_logging.md
+          - 자주 만나는 오류: vbscript_core_summary/09_debugging/common_errors.md
+
+      - 10. 실습:
+          - 단계별 실습: vbscript_core_summary/10_practice/step_by_step_practice.md
+          - 기초 문법 실습: vbscript_core_summary/10_practice/basic_exercises.md
+          - 금융 화면 실전 실습: vbscript_core_summary/10_practice/financial_screen_exercises.md
+          - 코드 리딩 실습: vbscript_core_summary/10_practice/code_reading_exercises.md
+
+      - 부록:
+          - Java 개발자용 비교표: vbscript_core_summary/appendix/java_comparison.md
+          - 자주 쓰는 함수 치트시트: vbscript_core_summary/appendix/cheatsheet.md
+          - 코딩 규칙 권장안: vbscript_core_summary/appendix/coding_conventions.md
+          - 참고 자료: vbscript_core_summary/appendix/references.md
