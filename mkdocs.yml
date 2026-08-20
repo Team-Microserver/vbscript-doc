@@ -63,11 +63,10 @@ nav:
           - 문제 해결 및 운영 기준: 01_env/troubleshooting_guidelines.md
 
   - VBScript 실전 개발 가이드:
-      - 00. 학습 시작:
-          - 학습 가이드: vbscript_core_summary/00_getting_started/learning_guide.md
-          - VBScript 이해하기: vbscript_core_summary/00_getting_started/vbscript_overview.md
-          - 학습 및 실습 환경: vbscript_core_summary/00_getting_started/learning_environment.md
-          - 소스 읽는 순서: vbscript_core_summary/00_getting_started/source_reading_strategy.md
+      - 00. 학습 방향:
+          - 학습 로드맵: vbscript_core_summary/00_getting_started/learning_guide.md
+          - VBScript 개요와 특징: vbscript_core_summary/00_getting_started/vbscript_overview.md
+          - 기존 소스 분석 방법: vbscript_core_summary/00_getting_started/source_reading_strategy.md
 
       - 01. 기본 문법:
           - 기본 문법 개요: vbscript_core_summary/01_language_basics/language_basics_overview.md
