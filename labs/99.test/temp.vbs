@@ -1,14 +1,14 @@
 Option Explicit
 
 ' ============================================
-' ë³€ìˆ˜ ì„ ì–¸
+' º¯¼ö ¼±¾ð
 ' ============================================
 
 Dim message
 Dim num
 Dim longNum
 ' ============================================
-' ì²˜ë¦¬
+' Ã³¸®
 ' ============================================
 
 message = "Hello VBScript"
@@ -17,7 +17,7 @@ longNum = 11111111111111
 
 
 ' ============================================
-' ê²°ê³¼ ì¶œë ¥
+' °á°ú Ãâ·Â
 ' ============================================
 WScript.Echo VarType(message)
 WScript.Echo TypeName(message)
@@ -46,3 +46,51 @@ WScript.Echo codes(0)  ' A
 result = Join(codes, "|")
 
 WScript.Echo result   ' A|B|C
+
+Dim formatted
+formatted = FormatNumber(1234567.89, 2)
+WScript.Echo formatted   ' 1,234,567.89
+
+formatted = FormatNumber(1234567.89, 3)
+WScript.Echo formatted   ' 1,234,567.890
+
+formatted = FormatNumber(1234567.89, 1)
+WScript.Echo formatted   ' 1,234,567.9
+
+
+
+
+
+
+Call TestTradeDate()
+
+Sub TestTradeDate()
+
+    Dim tradeDateText
+    Dim tradeDate
+
+    ' Å×½ºÆ®ÇÒ °ªÀ» Á÷Á¢ ÀÔ·Â
+    tradeDateText = "2026-08-20"
+
+    tradeDateText = Trim(tradeDateText)
+
+    If tradeDateText = "" Then
+
+        WScript.Echo "°Å·¡ÀÏÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä."
+        Exit Sub
+
+    ElseIf Not IsDate(tradeDateText) Then
+
+        WScript.Echo "°Å·¡ÀÏÀÚ¸¦ È®ÀÎÇÏ¼¼¿ä."
+        Exit Sub
+
+    Else
+
+        tradeDate = CDate(tradeDateText)
+
+    End If
+
+    WScript.Echo "ÀÔ·Â°ª : " & tradeDateText
+    WScript.Echo "º¯È¯µÈ ³¯Â¥ : " & tradeDate
+
+End Sub
