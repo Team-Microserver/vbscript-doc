@@ -1,0 +1,1158 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="금융 SI 화면개발과 레거시 시스템 유지보수를 위한 VBScript 학습 가이드">
+      
+      
+        <meta name="author" content="Team VBScript Study">
+      
+      
+      
+      
+        <link rel="next" href="../windows_vbscript_runtime_setup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>실행 설정 개요 - VBScript 실전 개발 가이드</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vbscript" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="VBScript 실전 개발 가이드" class="md-header__button md-logo" aria-label="VBScript 실전 개발 가이드" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VBScript 실전 개발 가이드
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              실행 설정 개요
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="공유" aria-label="공유" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  VBScript 실행환경 설정
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vbscript_core_summary/00_getting_started/learning_guide/" class="md-tabs__link">
+          
+  
+  
+  VBScript 실전 개발 가이드
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="VBScript 실전 개발 가이드" class="md-nav__button md-logo" aria-label="VBScript 실전 개발 가이드" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VBScript 실전 개발 가이드
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VBScript 실행환경 설정
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VBScript 실행환경 설정
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    실행 설정 개요
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    실행 설정 개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 문서 목적
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 전체 문서 구성
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 전체 문서 구성">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-windows-vbscript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Windows VBScript 실행 기능 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 VS Code 작업 환경 구성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-vs-code-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 VS Code 실행 Task 구성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 스크립트 실행 및 검증
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 문제 해결 및 운영 기준
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 최종 실행 구조
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 기준 환경
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 문서 진행 순서
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows_vbscript_runtime_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows VBScript 실행 기능 확인
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode_workspace_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code 작업 환경 구성
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode_task_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code 실행 Task 구성
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vbscript_run_verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    스크립트 실행 및 검증
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting_guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    문제 해결 및 운영 기준
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../vbscript_core_summary/00_getting_started/learning_guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VBScript 실전 개발 가이드
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 문서 목적
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 전체 문서 구성
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 전체 문서 구성">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-windows-vbscript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Windows VBScript 실행 기능 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 VS Code 작업 환경 구성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-vs-code-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 VS Code 실행 Task 구성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 스크립트 실행 및 검증
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 문제 해결 및 운영 기준
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 최종 실행 구조
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 기준 환경
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 문서 진행 순서
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vbscript">VBScript 실행 환경 구성 가이드<a class="headerlink" href="#vbscript" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 문서 목적<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>이 문서는 <strong>Windows 11 Pro + Visual Studio Code 환경에서 VBScript(<code>.vbs</code>) 코드를 직접 작성하고 실행하기 위한 전체 구성 절차</strong>를 안내한다.</p>
+<p>기존의 하나로 긴 문서를 다음과 같이 역할별로 분리하였다.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Windows 실행 기능 확인] --&gt; B[VS Code 작업환경 구성]
+    B --&gt; C[VS Code Task 구성]
+    C --&gt; D[스크립트 실행 및 검증]
+    D --&gt; E[문제 해결 및 운영 기준]</code></pre>
+<p>각 문서는 독립적으로 확인할 수 있지만, 처음 환경을 구성한다면 아래 순서대로 진행하는 것을 권장한다.</p>
+<hr />
+<h2 id="2">2. 전체 문서 구성<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21-windows-vbscript">2.1 Windows VBScript 실행 기능 확인<a class="headerlink" href="#21-windows-vbscript" title="Permanent link">&para;</a></h3>
+<p>먼저 Windows 자체에서 VBScript를 실행할 수 있는지 확인한다.</p>
+<p>확인 항목:</p>
+<ul>
+<li>Windows 11 버전</li>
+<li><code>cscript.exe</code></li>
+<li><code>wscript.exe</code></li>
+<li>Windows Script Host</li>
+<li>VBScript Feature on Demand 상태</li>
+<li>PowerShell에서 <code>.vbs</code> 파일 직접 실행</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">가이드 진행</p>
+<p>Windows 11에서 VBScript 실행 기능이 정상적으로 동작하는지 먼저 확인해야 한다.</p>
+<p>위의 내용을 확인한 후 아래 링크의 가이드를 진행한다.</p>
+<p><strong><a href="../windows_vbscript_runtime_setup/">Windows VBScript 실행 기능 확인</a></strong></p>
+</div>
+<hr />
+<h3 id="22-vs-code">2.2 VS Code 작업 환경 구성<a class="headerlink" href="#22-vs-code" title="Permanent link">&para;</a></h3>
+<p>Windows에서 VBScript 실행이 정상임을 확인한 후 VS Code 작업환경을 구성한다.</p>
+<p>확인 항목:</p>
+<ul>
+<li>VS Code 설치 상태</li>
+<li>VBScript 학습 폴더 생성</li>
+<li>VS Code에서 폴더 열기</li>
+<li>Integrated Terminal 실행</li>
+<li>VS Code Terminal에서 <code>cscript.exe</code> 실행</li>
+<li>VS Code Extension 사용 기준</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">가이드 진행</p>
+<p>Windows에서 <code>cscript.exe</code>를 이용한 VBScript 직접 실행이 정상적으로 완료되었다면 VS Code 작업환경을 구성한다.</p>
+<p>위의 설정을 완료한 경우 아래 링크의 다음 가이드를 진행한다.</p>
+<p><strong><a href="../vscode_workspace_setup/">VS Code 작업 환경 구성</a></strong></p>
+</div>
+<hr />
+<h3 id="23-vs-code-task">2.3 VS Code 실행 Task 구성<a class="headerlink" href="#23-vs-code-task" title="Permanent link">&para;</a></h3>
+<p>매번 Terminal에서 명령어를 입력하지 않고 다음 단축키로 현재 <code>.vbs</code> 파일을 실행하도록 설정한다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Ctrl + Shift + B
+</span></code></pre></div>
+<p>구성 항목:</p>
+<ul>
+<li><code>.vscode</code> 폴더</li>
+<li><code>tasks.json</code></li>
+<li><code>${file}</code></li>
+<li><code>${fileDirname}</code></li>
+<li><code>cscript.exe</code></li>
+<li>기본 Build Task 지정</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">가이드 진행</p>
+<p>VS Code에서 <code>cscript.exe</code>를 이용하여 <code>.vbs</code> 파일을 직접 실행하는 것까지 확인했다면, 반복 실행을 편리하게 하기 위한 VS Code Task를 구성한다.</p>
+<p>위의 설정을 완료한 경우 아래 링크의 다음 가이드를 진행한다.</p>
+<p><strong><a href="../vscode_task_setup/">VS Code 실행 Task 구성</a></strong></p>
+</div>
+<hr />
+<h3 id="24">2.4 스크립트 실행 및 검증<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<p>Task 구성이 완료되면 여러 <code>.vbs</code> 파일을 만들어 실제 실행을 검증한다.</p>
+<p>검증 항목:</p>
+<ul>
+<li><code>hello.vbs</code></li>
+<li><code>loop_test.vbs</code></li>
+<li>현재 활성화된 파일 실행 확인</li>
+<li><code>WScript.Echo</code></li>
+<li><code>MsgBox</code></li>
+<li>반복적인 학습 실행 흐름</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">가이드 진행</p>
+<p><code>.vscode/tasks.json</code> 구성이 완료되었다면 실제 VBScript 예제를 실행하여 현재 파일 실행과 Terminal 출력이 정상적으로 동작하는지 검증한다.</p>
+<p>위의 설정을 완료한 경우 아래 링크의 다음 가이드를 진행한다.</p>
+<p><strong><a href="../vbscript_run_verification/">스크립트 실행 및 검증</a></strong></p>
+</div>
+<hr />
+<h3 id="25">2.5 문제 해결 및 운영 기준<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
+<p>실행 중 문제가 발생했을 때 확인할 내용을 정리한다.</p>
+<p>주요 내용:</p>
+<ul>
+<li><code>cscript.exe</code>를 찾을 수 없는 경우</li>
+<li>VBScript Engine 오류</li>
+<li>Script File을 찾을 수 없는 경우</li>
+<li><code>tasks.json</code> 인식 문제</li>
+<li>수정 내용이 반영되지 않는 경우</li>
+<li>한글 인코딩 문제</li>
+<li>보안 주의사항</li>
+<li>순수 VBScript / WSH / 솔루션 전용 코드 구분</li>
+<li>최종 점검 체크리스트</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">문제 발생 시 참고</p>
+<p>환경 구성 또는 스크립트 실행 중 오류가 발생하거나, 정상적으로 실행되지 않는 경우에는 아래 가이드에서 단계별 확인 방법을 참고한다.</p>
+<p><strong><a href="../troubleshooting_guidelines/">문제 해결 및 운영 기준</a></strong></p>
+</div>
+<hr />
+<h2 id="3">3. 최종 실행 구조<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>환경 구성이 끝나면 전체 실행 구조는 다음과 같다.</p>
+<pre class="mermaid"><code>flowchart TD
+    A[Windows 11 Pro]
+
+    A --&gt; B[Windows Script Host]
+    B --&gt; C[cscript.exe]
+
+    A --&gt; D[Visual Studio Code]
+    D --&gt; E[VBScript .vbs]
+    D --&gt; F[.vscode/tasks.json]
+
+    F --&gt; C
+    C --&gt; E
+    E --&gt; G[실행 결과]
+    G --&gt; H[VS Code Terminal]</code></pre>
+<p>실제 사용 흐름은 다음처럼 단순하다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VS Code에서 .vbs 파일 열기
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        ↓
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>코드 작성 또는 수정
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        ↓
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Ctrl + S
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        ↓
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Ctrl + Shift + B
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        ↓
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>cscript.exe가 현재 파일 실행
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        ↓
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>VS Code Terminal에서 결과 확인
+</span></code></pre></div>
+<hr />
+<h2 id="4">4. 기준 환경<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>운영체제</td>
+<td>Windows 11 Pro</td>
+</tr>
+<tr>
+<td>편집기</td>
+<td>Visual Studio Code</td>
+</tr>
+<tr>
+<td>언어</td>
+<td>VBScript</td>
+</tr>
+<tr>
+<td>파일 확장자</td>
+<td><code>.vbs</code></td>
+</tr>
+<tr>
+<td>실행 환경</td>
+<td>Windows Script Host</td>
+</tr>
+<tr>
+<td>기본 실행 프로그램</td>
+<td><code>cscript.exe</code></td>
+</tr>
+<tr>
+<td>결과 확인</td>
+<td>VS Code Integrated Terminal</td>
+</tr>
+<tr>
+<td>VS Code 실행</td>
+<td><code>Ctrl + Shift + B</code></td>
+</tr>
+<tr>
+<td>실행 설정</td>
+<td><code>.vscode/tasks.json</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">VBScript 전용 IDE는 필요하지 않다</p>
+<p>VBScript 실행 자체를 위해 별도의 컴파일러나 SDK를 설치하는 구조가 아니다.</p>
+<p>Windows Script Host가 실행을 담당하고, VS Code는 <strong>코드 편집과 실행 명령 호출 환경</strong>으로 사용한다.</p>
+</div>
+<hr />
+<h2 id="5">5. 문서 진행 순서<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>처음 환경을 구성하는 경우 아래 순서를 그대로 따라간다.</p>
+<div class="admonition tip">
+<p class="admonition-title">1단계 - Windows VBScript 실행 기능 확인</p>
+<p>Windows 11에서 Windows Script Host와 <code>cscript.exe</code>가 정상적으로 동작하는지 확인하고, 가장 단순한 <code>.vbs</code> 파일을 PowerShell에서 직접 실행한다.</p>
+<p><strong><a href="../windows_vbscript_runtime_setup/">Windows VBScript 실행 기능 확인</a></strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">2단계 - VS Code 작업 환경 구성</p>
+<p>Windows 차원의 VBScript 실행이 정상임을 확인한 후 VS Code에서 학습 폴더를 열고 Integrated Terminal을 이용한 실행 환경을 구성한다.</p>
+<p><strong><a href="../vscode_workspace_setup/">VS Code 작업 환경 구성</a></strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">3단계 - VS Code 실행 Task 구성</p>
+<p>매번 실행 명령을 직접 입력하지 않도록 <code>.vscode/tasks.json</code>을 구성하고 <code>Ctrl + Shift + B</code>로 현재 <code>.vbs</code> 파일을 실행할 수 있도록 설정한다.</p>
+<p><strong><a href="../vscode_task_setup/">VS Code 실행 Task 구성</a></strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">4단계 - 스크립트 실행 및 검증</p>
+<p>여러 VBScript 예제 파일을 실행하여 현재 활성화된 파일이 정확히 실행되고 결과가 VS Code Terminal에 출력되는지 검증한다.</p>
+<p><strong><a href="../vbscript_run_verification/">스크립트 실행 및 검증</a></strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">5단계 - 문제 해결 및 운영 기준</p>
+<p>환경 구성 또는 실행 과정에서 오류가 발생하는 경우 Windows → <code>cscript.exe</code> → VS Code Terminal → <code>tasks.json</code> → 실제 코드 순서로 문제를 확인한다.</p>
+<p><strong><a href="../troubleshooting_guidelines/">문제 해결 및 운영 기준</a></strong></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">진행 순서</p>
+<p>VS Code Task부터 먼저 구성하지 않는다.</p>
+<p><strong>Windows에서 <code>cscript.exe</code>로 <code>.vbs</code> 파일이 실제 실행되는 것을 먼저 확인한 후 VS Code를 연결</strong>해야 문제가 발생했을 때 원인을 쉽게 구분할 수 있다.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.prune", "content.code.copy", "content.code.annotate", "content.tabs.link", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
