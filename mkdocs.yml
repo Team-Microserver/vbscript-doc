@@ -56,7 +56,7 @@ nav:
 
   - VBScript 실행환경 설정:
           - 실행 설정 개요: 01_env/vbscript_execution_environment.md
-          - Windows VBScript 실행 기능 확인: 01_env/windows_vbscript_runtime_setup.md
+#          - Windows VBScript 실행 기능 확인: 01_env/windows_vbscript_runtime_setup.md
           - VS Code 작업 환경 구성: 01_env/vscode_workspace_setup.md
           - VS Code 실행 Task 구성: 01_env/vscode_task_setup.md
           - 스크립트 실행 및 검증: 01_env/vbscript_run_verification.md

@@ -111,11 +111,11 @@ VS Code Terminal
 
 ---
 
-# 4. 1단계 - Windows 버전 확인
+## 4. 1단계 - Windows 버전 확인
 
 먼저 현재 Windows 환경을 확인한다.
 
-## 4.1 Windows 버전 확인
+### 4.1 Windows 버전 확인
 
 키보드에서 다음 키를 누른다.
 
@@ -151,13 +151,13 @@ Get-ComputerInfo | Select-Object WindowsProductName, WindowsVersion, OsBuildNumb
 
 ---
 
-# 5. 2단계 - VBScript 실행 기능 확인
+## 5. 2단계 - VBScript 실행 기능 확인
 
 VS Code 설정에 들어가기 전에 **Windows 자체에서 VBScript가 실행 가능한 상태인지 먼저 확인**한다.
 
 이 단계가 정상이어야 VS Code에서도 실행할 수 있다.
 
-## 5.1 PowerShell 실행
+### 5.1 PowerShell 실행
 
 Windows 시작 메뉴에서 다음을 검색한다.
 
@@ -169,7 +169,7 @@ PowerShell
 
 ---
 
-## 5.2 `cscript.exe` 존재 여부 확인
+### 5.2 `cscript.exe` 존재 여부 확인
 
 PowerShell에서 다음 명령을 실행한다.
 
@@ -205,7 +205,7 @@ where.exe wscript.exe
 
 ---
 
-## 5.3 `cscript.exe` 실행 확인
+### 5.3 `cscript.exe` 실행 확인
 
 다음 명령을 실행한다.
 
@@ -220,7 +220,7 @@ cscript.exe //?
 
 ---
 
-# 6. 3단계 - VBScript Feature on Demand 상태 확인
+## 6. 3단계 - VBScript Feature on Demand 상태 확인
 
 최신 Windows에서는 VBScript가 **Feature on Demand(선택적 기능)** 형태로 제공될 수 있으므로 현재 설치 상태를 확인해 두는 것이 좋다.
 
@@ -255,7 +255,7 @@ flowchart LR
 
 ---
 
-## 6.1 Windows Sudo 사용 가능 여부 확인
+### 6.1 Windows Sudo 사용 가능 여부 확인
 
 Windows 11에서는 Sudo for Windows를 이용하여 **일반 권한 Terminal에서 특정 명령만 관리자 권한으로 실행**할 수 있다.
 
@@ -274,7 +274,7 @@ sudo --help
 
 ---
 
-## 6.2 Sudo가 비활성화되어 있는 경우
+### 6.2 Sudo가 비활성화되어 있는 경우
 
 다음과 같은 메시지가 표시될 수 있다.
 
@@ -305,7 +305,7 @@ Enable sudo
 
 ---
 
-## 6.3 Sudo 실행 모드 설정
+### 6.3 Sudo 실행 모드 설정
 
 Sudo for Windows에는 여러 실행 모드가 있다.
 
@@ -361,7 +361,7 @@ sudo config --enable normal
 
 ---
 
-## 6.4 VS Code Terminal에서 VBScript Capability 확인
+### 6.4 VS Code Terminal에서 VBScript Capability 확인
 
 Sudo가 활성화되고 현재 Terminal에서 결과를 확인할 수 있도록 설정되었다면 다음 명령을 실행한다.
 
@@ -398,7 +398,7 @@ Installed
 
 ---
 
-## 6.5 명령에서 따옴표와 `` `$ ``를 사용하는 이유
+### 6.5 명령에서 따옴표와 `` `$ ``를 사용하는 이유
 
 다음 명령은 PowerShell 안에서 다시 PowerShell을 실행하는 구조다.
 
@@ -434,7 +434,7 @@ Get-WindowsCapability 실행
 'VBSCRIPT*'
 ```
 
-### 잘못 전달된 경우의 오류 예
+#### 잘못 전달된 경우의 오류 예
 
 따옴표 또는 `$` 이스케이프가 정상적으로 전달되지 않으면 다음과 같은 오류가 발생할 수 있다.
 
@@ -461,7 +461,7 @@ sudo powershell.exe -NoProfile -Command "Get-WindowsCapability -Online | Where-O
 
 ---
 
-## 6.6 VBScript가 설치되어 있지 않은 경우
+### 6.6 VBScript가 설치되어 있지 않은 경우
 
 결과의 `State`가 `Installed`가 아니라면 Windows 설정에서 **선택적 기능(Optional Features)** 을 검색한다.
 
@@ -495,11 +495,11 @@ Optional features
 
 ---
 
-## 6.7 Sudo를 사용할 수 없는 경우
+### 6.7 Sudo를 사용할 수 없는 경우
 
 `sudo`를 사용할 수 없거나 회사 보안 정책으로 비활성화되어 있다면 다음 방법을 사용한다.
 
-### 방법 1. 관리자 권한 PowerShell 사용
+#### 방법 1. 관리자 권한 PowerShell 사용
 
 Windows 시작 메뉴에서 PowerShell을 검색한 후:
 
@@ -516,7 +516,7 @@ Get-WindowsCapability -Online |
     Where-Object { $_.Name -like "VBSCRIPT*" }
 ```
 
-### 방법 2. VS Code 자체를 관리자 권한으로 실행
+#### 방법 2. VS Code 자체를 관리자 권한으로 실행
 
 VS Code를 종료한 후:
 
@@ -542,7 +542,7 @@ Get-WindowsCapability -Online |
 
 ---
 
-## 6.8 현재 환경에서 확인한 정상 결과 예
+### 6.8 현재 환경에서 확인한 정상 결과 예
 
 VS Code Integrated Terminal에서 다음 명령을 실행한다.
 
@@ -563,11 +563,11 @@ State : Installed
 
 ---
 
-# 7. 4단계 - Windows에서 VBScript 단독 실행 테스트
+## 7. 4단계 - Windows에서 VBScript 단독 실행 테스트
 
 VS Code와 연결하기 전에 Windows Script Host가 실제 `.vbs` 파일을 실행할 수 있는지 검증한다.
 
-## 7.1 테스트 폴더 생성
+### 7.1 테스트 폴더 생성
 
 예를 들어 다음 폴더를 생성한다.
 
@@ -589,7 +589,7 @@ cd C:\dev\vbscript-lab
 
 ---
 
-## 7.2 첫 번째 VBScript 파일 작성
+### 7.2 첫 번째 VBScript 파일 작성
 
 메모장 또는 VS Code로 다음 파일을 생성한다.
 
@@ -617,7 +617,7 @@ C:\dev\vbscript-lab
 
 ---
 
-## 7.3 PowerShell에서 직접 실행
+### 7.3 PowerShell에서 직접 실행
 
 다음 명령을 실행한다.
 
@@ -631,7 +631,7 @@ cscript.exe //nologo .\hello.vbs
 Hello VBScript
 ```
 
-### `//nologo` 옵션
+#### `//nologo` 옵션
 
 `cscript.exe`를 기본 옵션으로 실행하면 Windows Script Host의 버전 정보가 함께 표시될 수 있다.
 
@@ -662,7 +662,7 @@ cscript.exe //nologo hello.vbs
 
 ---
 
-# 8. 5단계 - Visual Studio Code 설치 확인
+## 8. 5단계 - Visual Studio Code 설치 확인
 
 이미 VS Code를 사용하고 있다면 이 단계는 간단히 확인만 하고 넘어간다.
 
@@ -693,7 +693,7 @@ code --version
 
 ---
 
-# 9. 6단계 - VS Code 작업 폴더 열기
+## 9. 6단계 - VS Code 작업 폴더 열기
 
 VS Code에서 단순히 파일 하나만 여는 것보다 **폴더를 Workspace로 열어 사용하는 방식**을 권장한다.
 
@@ -725,7 +725,7 @@ VBSCRIPT-LAB
 
 ---
 
-# 10. 7단계 - VS Code Terminal에서 실행 확인
+## 10. 7단계 - VS Code Terminal에서 실행 확인
 
 VS Code 메뉴에서 Terminal을 연다.
 
@@ -775,7 +775,7 @@ flowchart LR
 
 ---
 
-# 11. 8단계 - `.vscode` 폴더 생성
+## 11. 8단계 - `.vscode` 폴더 생성
 
 프로젝트 루트에 다음 폴더를 생성한다.
 
@@ -805,7 +805,7 @@ VBSCRIPT-LAB
 
 ---
 
-# 12. 9단계 - `tasks.json` 생성
+## 12. 9단계 - `tasks.json` 생성
 
 `.vscode` 폴더 아래에 다음 파일을 생성한다.
 
@@ -858,11 +858,11 @@ C:\dev\vbscript-lab
 
 ---
 
-# 13. `tasks.json` 상세 설명
+## 13. `tasks.json` 상세 설명
 
 설정을 단순히 복사하는 것보다 각 항목이 어떤 역할을 하는지 이해하는 것이 좋다.
 
-## 13.1 `label`
+### 13.1 `label`
 
 ```json
 "label": "VBScript: Run Current File"
@@ -878,7 +878,7 @@ VBScript: Run Current File
 
 ---
 
-## 13.2 `type`
+### 13.2 `type`
 
 ```json
 "type": "process"
@@ -894,7 +894,7 @@ cscript.exe
 
 ---
 
-## 13.3 `command`
+### 13.3 `command`
 
 ```json
 "command": "${env:WINDIR}\\System32\\cscript.exe"
@@ -920,7 +920,7 @@ C:\Windows\System32\cscript.exe
 
 ---
 
-## 13.4 `args`
+### 13.4 `args`
 
 ```json
 "args": [
@@ -937,7 +937,7 @@ C:\Windows\System32\cscript.exe
 cscript.exe //nologo 현재열려있는파일.vbs
 ```
 
-### `${file}`
+#### `${file}`
 
 VS Code의 `${file}` 변수는 **현재 활성화된 에디터의 파일 전체 경로**를 의미한다.
 
@@ -961,7 +961,7 @@ function.vbs
 
 ---
 
-## 13.5 `options.cwd`
+### 13.5 `options.cwd`
 
 ```json
 "options": {
@@ -987,7 +987,7 @@ C:\dev\vbscript-lab\01_basic
 
 ---
 
-## 13.6 `group`
+### 13.6 `group`
 
 ```json
 "group": {
@@ -1056,7 +1056,7 @@ cscript.exe
 
 ---
 
-## 13.7 `presentation`
+### 13.7 `presentation`
 
 ```json
 "presentation": {
@@ -1068,7 +1068,7 @@ cscript.exe
 
 실행 결과를 VS Code Terminal에서 표시하는 방법을 지정한다.
 
-### `reveal`
+#### `reveal`
 
 ```json
 "reveal": "always"
@@ -1076,7 +1076,7 @@ cscript.exe
 
 실행 시 Terminal을 자동으로 표시한다.
 
-### `panel`
+#### `panel`
 
 ```json
 "panel": "shared"
@@ -1084,7 +1084,7 @@ cscript.exe
 
 동일한 Terminal 패널을 재사용한다.
 
-### `clear`
+#### `clear`
 
 ```json
 "clear": true
@@ -1094,11 +1094,11 @@ cscript.exe
 
 ---
 
-# 14. 10단계 - VS Code에서 VBScript 실행
+## 14. 10단계 - VS Code에서 VBScript 실행
 
 이제 실제로 VS Code에서 `.vbs` 파일을 실행한다.
 
-## 14.1 `hello.vbs` 열기
+### 14.1 `hello.vbs` 열기
 
 Explorer에서 다음 파일을 선택한다.
 
@@ -1119,7 +1119,7 @@ WScript.Echo message
 
 ---
 
-## 14.2 파일 저장
+### 14.2 파일 저장
 
 반드시 먼저 저장한다.
 
@@ -1134,7 +1134,7 @@ Ctrl + S
 
 ---
 
-## 14.3 실행
+### 14.3 실행
 
 다음 단축키를 누른다.
 
@@ -1154,7 +1154,7 @@ VBScript: Run Current File
 
 ---
 
-## 14.4 결과 확인
+### 14.4 결과 확인
 
 VS Code 하단 Terminal에 다음 결과가 표시된다.
 
@@ -1186,7 +1186,7 @@ flowchart TD
 
 ---
 
-# 15. 11단계 - 두 번째 스크립트로 현재 파일 실행 확인
+## 15. 11단계 - 두 번째 스크립트로 현재 파일 실행 확인
 
 `tasks.json`이 특정 파일만 실행하는 것이 아니라 **현재 열려 있는 파일을 실행하는지** 확인한다.
 
@@ -1264,7 +1264,7 @@ i = 5
 
 ---
 
-# 16. 권장 학습 프로젝트 구조
+## 16. 권장 학습 프로젝트 구조
 
 VBScript 문법을 단계적으로 학습하면서 테스트하려면 다음과 같이 구성하는 것을 권장한다.
 
@@ -1318,11 +1318,11 @@ vbscript-lab
 
 ---
 
-# 17. VS Code에서 권장하는 기본 사용 흐름
+## 17. VS Code에서 권장하는 기본 사용 흐름
 
 앞으로 VBScript 예제 코드를 테스트할 때는 다음 순서를 기본으로 한다.
 
-## STEP 1. `.vbs` 파일 생성
+### STEP 1. `.vbs` 파일 생성
 
 예:
 
@@ -1330,7 +1330,7 @@ vbscript-lab
 condition.vbs
 ```
 
-## STEP 2. 코드 작성
+### STEP 2. 코드 작성
 
 ```vbscript
 Option Explicit
@@ -1345,25 +1345,25 @@ Else
 End If
 ```
 
-## STEP 3. 저장
+### STEP 3. 저장
 
 ```text
 Ctrl + S
 ```
 
-## STEP 4. 실행
+### STEP 4. 실행
 
 ```text
 Ctrl + Shift + B
 ```
 
-## STEP 5. Terminal 결과 확인
+### STEP 5. Terminal 결과 확인
 
 ```text
 PASS
 ```
 
-## STEP 6. 코드 수정 후 반복
+### STEP 6. 코드 수정 후 반복
 
 ```text
 코드 작성
@@ -1381,7 +1381,7 @@ Ctrl + Shift + B
 
 ---
 
-# 18. `WScript.Echo` 사용 권장
+## 18. `WScript.Echo` 사용 권장
 
 학습용 예제의 출력은 가능하면 다음 방식을 사용한다.
 
@@ -1401,7 +1401,7 @@ Hello VBScript
 
 ---
 
-# 19. `MsgBox`와 차이
+## 19. `MsgBox`와 차이
 
 다음 코드는 Windows 대화상자를 표시한다.
 
@@ -1433,7 +1433,7 @@ WScript.Echo
 
 ---
 
-# 20. VS Code 확장 프로그램에 대한 기준
+## 20. VS Code 확장 프로그램에 대한 기준
 
 VBScript를 실행하기 위해 반드시 설치해야 하는 VS Code Extension은 없다.
 
@@ -1468,7 +1468,7 @@ Extension은 다음 기능이 필요할 때 선택적으로 설치한다.
 
 ---
 
-# 21. F5 실행과 `Ctrl + Shift + B`의 차이
+## 21. F5 실행과 `Ctrl + Shift + B`의 차이
 
 VS Code에서 일반적으로 `F5`는 **디버거(Debugger)** 를 실행하는 키다.
 
@@ -1507,7 +1507,7 @@ cscript.exe
 
 ---
 
-# 22. 선택 설정 - Task를 명령 팔레트에서 실행
+## 22. 선택 설정 - Task를 명령 팔레트에서 실행
 
 단축키를 사용하지 않고 메뉴에서도 실행할 수 있다.
 
@@ -1539,7 +1539,7 @@ VBScript: Run Current File
 
 ---
 
-# 23. 오류 확인 방법
+## 23. 오류 확인 방법
 
 VBScript 코드에 오류가 있으면 `cscript.exe`가 Terminal에 오류 정보를 출력한다.
 
@@ -1561,19 +1561,95 @@ Terminal에서는 파일명, 줄 번호와 함께 오류가 출력된다.
 이 정보를 이용하여 해당 코드를 수정한다.
 
 !!! tip "`Option Explicit` 사용"
-    학습 예제에서는 가능하면 파일 첫 부분에 다음 코드를 사용한다.
+    VBScript 파일에서는 가급적 **파일의 첫 부분에 `Option Explicit`를 선언하는 것을 권장한다.**
 
     ```vbscript
     Option Explicit
     ```
 
-    변수 이름 오타와 선언 누락을 빠르게 확인하는 데 도움이 된다.
+    `Option Explicit`를 사용하면 모든 변수를 사용하기 전에 `Dim` 등의 선언문으로 먼저 선언해야 한다.
+
+    ```vbscript
+    Option Explicit
+
+    Dim userName
+    Dim userAge
+
+    userName = "Kim"
+    userAge = 30
+
+    WScript.Echo userName
+    WScript.Echo userAge
+    ```
+
+    VBScript는 기본적으로 변수를 선언하지 않아도 사용할 수 있다.
+
+    예를 들어 다음 코드는 `Option Explicit`가 없으면 오류 없이 실행될 수 있다.
+
+    ```vbscript
+    Dim userName
+
+    userName = "Kim"
+
+    ' 변수명을 잘못 입력
+    userNmae = "Lee"
+
+    WScript.Echo userName
+    ```
+
+    `userName`을 사용하려고 했지만 `userNmae`라고 잘못 입력하였다.
+
+    `Option Explicit`가 없으면 VBScript는 `userNmae`를 새로운 변수로 인식할 수 있기 때문에
+    변수명 오타를 즉시 발견하기 어렵다.
+
+    반면 `Option Explicit`를 사용하면 선언하지 않은 변수에 접근하는 순간 오류가 발생한다.
+
+    ```vbscript
+    Option Explicit
+
+    Dim userName
+
+    userName = "Kim"
+
+    ' 선언되지 않은 변수이므로 오류 발생
+    userNmae = "Lee"
+    ```
+
+    실행하면 다음과 같이 선언되지 않은 변수를 확인할 수 있다.
+
+    ```text
+    Microsoft VBScript runtime error
+    Variable is undefined: 'userNmae'
+    ```
+
+    따라서 `Option Explicit`를 사용하면 다음과 같은 실수를 빠르게 발견할 수 있다.
+
+    - 변수 이름 오타
+    - `Dim` 선언 누락
+    - 비슷한 변수명을 잘못 사용한 경우
+    - 코드 수정 과정에서 발생한 변수명 불일치
+
+    특히 코드가 길어질수록 이러한 오류를 눈으로 찾기 어려워지므로,
+    **학습 예제뿐만 아니라 실제 VBScript 작성 시에도 `Option Explicit`를 기본적으로 사용하는 것을 권장한다.**
+
+    일반적으로 다음과 같은 형태로 파일을 시작하면 된다.
+
+    ```vbscript
+    Option Explicit
+
+    Dim 변수명
+    Dim 변수명2
+
+    ' 실제 처리 코드
+    ```
+
+    이후 학습 예제에서도 특별한 이유가 없다면 `Option Explicit`를 사용하는 것을 기본으로 한다.
 
 ---
 
-# 24. 자주 발생하는 문제
+## 24. 자주 발생하는 문제
 
-## 24.1 `cscript.exe`를 찾을 수 없는 경우
+### 24.1 `cscript.exe`를 찾을 수 없는 경우
 
 확인:
 
@@ -1597,7 +1673,7 @@ C:\Windows\System32\cscript.exe
 
 ---
 
-## 24.2 `Get-WindowsCapability` 권한 상승 오류
+### 24.2 `Get-WindowsCapability` 권한 상승 오류
 
 일반 권한 PowerShell에서 다음 명령을 실행하면:
 
@@ -1625,7 +1701,7 @@ Name  : VBSCRIPT~~~~
 State : Installed
 ```
 
-### Sudo가 비활성화되어 있는 경우
+#### Sudo가 비활성화되어 있는 경우
 
 ```text
 Sudo가 이 컴퓨터에서 사용하지 않도록 설정되어 있습니다.
@@ -1637,13 +1713,13 @@ Windows 설정에서 다음 위치를 확인한다.
 설정 → 시스템 → 고급 → Enable sudo
 ```
 
-### 관리자 창이 잠깐 열리고 바로 닫히는 경우
+#### 관리자 창이 잠깐 열리고 바로 닫히는 경우
 
 Sudo가 `forceNewWindow` 모드이면 관리자 명령이 별도 창에서 실행되고 명령 종료와 함께 창이 닫힐 수 있다.
 
 VS Code Terminal에서 결과를 직접 확인하려면 `normal` 모드를 사용할 수 있다.
 
-### `-like` 또는 `VBSCRIPT*` ParserError가 발생하는 경우
+#### `-like` 또는 `VBSCRIPT*` ParserError가 발생하는 경우
 
 PowerShell 중첩 실행 과정에서 따옴표 또는 `$_`가 먼저 해석된 경우다.
 
@@ -1658,7 +1734,7 @@ sudo powershell.exe -NoProfile -Command "Get-WindowsCapability -Online | Where-O
 
 ---
 
-## 24.3 VBScript Engine 관련 오류
+### 24.3 VBScript Engine 관련 오류
 
 예를 들어 `.vbs` 스크립트 엔진을 찾을 수 없다는 유형의 오류가 발생한다면 먼저 VBScript Feature on Demand 설치 상태를 확인한다.
 
@@ -1696,7 +1772,7 @@ Optional features
 
 ---
 
-## 24.4 `Can not find script file` 오류
+### 24.4 `Can not find script file` 오류
 
 예:
 
@@ -1721,7 +1797,7 @@ hello.vbs.txt
 
 ---
 
-## 24.5 `Ctrl + Shift + B`를 눌러도 Task가 나오지 않는 경우
+### 24.5 `Ctrl + Shift + B`를 눌러도 Task가 나오지 않는 경우
 
 다음 구조인지 확인한다.
 
@@ -1756,7 +1832,7 @@ tasks.json
 
 ---
 
-## 24.6 현재 파일이 아닌 다른 파일이 실행되는 경우
+### 24.6 현재 파일이 아닌 다른 파일이 실행되는 경우
 
 `tasks.json`의 `args` 부분을 확인한다.
 
@@ -1784,7 +1860,7 @@ tasks.json
 
 ---
 
-## 24.7 파일 수정 내용이 실행 결과에 반영되지 않는 경우
+### 24.7 파일 수정 내용이 실행 결과에 반영되지 않는 경우
 
 파일을 저장했는지 확인한다.
 
@@ -1806,7 +1882,7 @@ Ctrl + Shift + B
 
 ---
 
-## 24.8 한글 출력이 이상한 경우
+### 24.8 한글 출력이 이상한 경우
 
 처음 환경 검증은 다음과 같이 영문 문자열로 수행한다.
 
@@ -1820,7 +1896,7 @@ WScript.Echo "Hello VBScript"
 
 ---
 
-# 25. 보안상 주의사항
+## 25. 보안상 주의사항
 
 VBScript는 단순 계산이나 문자열 처리뿐만 아니라 Windows의 파일, 레지스트리, COM 객체 등에도 접근할 수 있다.
 
@@ -1828,7 +1904,9 @@ VBScript는 단순 계산이나 문자열 처리뿐만 아니라 Windows의 파�
 
 ```vbscript
 CreateObject("Scripting.FileSystemObject")
-vbscript
+```
+
+```vbscript
 CreateObject("WScript.Shell")
 ```
 
@@ -1841,13 +1919,13 @@ CreateObject("WScript.Shell")
 
 ---
 
-# 26. 학습 가이드 코드의 실행 범위
+## 26. 학습 가이드 코드의 실행 범위
 
 이 환경에서 모든 종류의 VBScript 관련 코드를 동일하게 실행할 수 있는 것은 아니다.
 
 앞으로 코드 예제를 다음 세 가지로 구분하는 것이 좋다.
 
-## 26.1 순수 VBScript
+### 26.1 순수 VBScript
 
 예:
 
@@ -1874,7 +1952,7 @@ VS Code + cscript.exe
 
 ---
 
-## 26.2 Windows Script Host / COM 코드
+### 26.2 Windows Script Host / COM 코드
 
 예:
 
@@ -1890,7 +1968,7 @@ CreateObject("Scripting.Dictionary")
 
 ---
 
-## 26.3 특정 솔루션 전용 VBScript
+### 26.3 특정 솔루션 전용 VBScript
 
 특정 업무 솔루션 또는 화면 개발 도구에서 제공하는 전용 객체, 이벤트, 컴포넌트 API를 사용하는 코드는 일반 `cscript.exe` 환경에서 실행되지 않을 수 있다.
 
@@ -1914,7 +1992,7 @@ Windows COM / WSH
 
 ---
 
-# 27. 최종 환경 구조
+## 27. 최종 환경 구조
 
 모든 설정이 완료되면 개발환경은 다음 구조가 된다.
 
@@ -1982,7 +2060,7 @@ VS Code Terminal 결과 확인
 
 ---
 
-# 28. 최종 점검 체크리스트
+## 28. 최종 점검 체크리스트
 
 환경 구성을 마친 후 다음 항목을 순서대로 확인한다.
 
@@ -2005,7 +2083,7 @@ VS Code Terminal 결과 확인
 
 ---
 
-# 29. 가장 먼저 사용할 기본 템플릿
+## 29. 가장 먼저 사용할 기본 템플릿
 
 새로운 학습 예제를 만들 때 다음 템플릿으로 시작할 수 있다.
 
@@ -2046,7 +2124,7 @@ Hello VBScript
 
 ---
 
-# 30. 요약
+## 30. 요약
 
 VBScript를 VS Code에서 실행하기 위해 필요한 핵심 구성은 매우 단순하다.
 
@@ -2109,7 +2187,7 @@ Terminal 결과 확인
 
 ---
 
-# 참고 자료
+## 참고 자료
 
 - [Microsoft Learn - Sudo for Windows](https://learn.microsoft.com/en-us/windows/advanced-settings/sudo/)
 - [Microsoft Learn - cscript](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cscript)
