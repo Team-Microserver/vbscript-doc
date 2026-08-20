@@ -1,0 +1,60 @@
+# ============================================================
+# MkDocs
+# ============================================================
+
+# MkDocs 빌드 결과물
+site/
+
+# MkDocs / Python 캐시
+.cache/
+
+
+# ============================================================
+# Python
+# ============================================================
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test / Tool Cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+
+# ============================================================
+# OS
+# ============================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+
+# ============================================================
+# Editor / Temporary Files
+# ============================================================
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# VS Code 설정은 프로젝트에서 공유하므로 제외하지 않음
+# 특히 .vscode/tasks.json은 VBScript 실행환경에 필요
