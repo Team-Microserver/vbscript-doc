@@ -24,7 +24,7 @@ plugins:
       lang: ko
   - redirects:
       redirect_maps:
-        index.md: 02_basics/00_getting_started/learning_guide.md
+        index.md: 01_env/vbscript_execution_environment.md
 
 markdown_extensions:
   - admonition
