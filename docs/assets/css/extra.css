@@ -1,107 +1,241 @@
-
 /* =========================================================
-   Microserver MkDocs Custom Styles
+   Alpharo · ProObject · VBScript 개발 가이드
+   Material for MkDocs Custom Theme
    ========================================================= */
 
-
 /* ---------------------------------------------------------
-   Admonition
+   1. 기본 색상
    --------------------------------------------------------- */
-.md-typeset .admonition.info {
-  border-width: 0 0 0 4px;
+:root {
+  --guide-navy: #17365d;
+  --guide-navy-dark: #0f2745;
+  --guide-blue: #245b8f;
+  --guide-blue-soft: #eef5fb;
+  --guide-border: #d9e2ec;
+  --guide-text-soft: #5b6777;
+  --guide-code-bg: #f6f8fa;
 }
 
-
-/* ---------------------------------------------------------
-   Code
-   --------------------------------------------------------- */
-.md-typeset code {
-  word-break: break-word;
+[data-md-color-scheme="slate"] {
+  --guide-navy: #7db7e8;
+  --guide-navy-dark: #9cc8ed;
+  --guide-blue: #82b9e5;
+  --guide-blue-soft: rgba(73, 132, 183, 0.14);
+  --guide-border: rgba(255, 255, 255, 0.12);
+  --guide-text-soft: #aeb8c5;
+  --guide-code-bg: #1c2430;
 }
 
+/* ---------------------------------------------------------
+   2. 상단 Header / Tabs
+   금융권 기술문서 느낌의 짙은 네이비 계열
+   --------------------------------------------------------- */
+.md-header {
+  background: linear-gradient(90deg, #102a43 0%, #173f67 55%, #1f527d 100%);
+}
 
-/* =========================================================
-   Left Navigation - 1 Depth Title
-   navigation.tabs 사용 시 현재 활성화된 최상위 탭
-   예: 프로젝트 시작 / Framework 구축 / 업무 및 금융 연계
-   ========================================================= */
+.md-tabs {
+  background-color: #0f2f4f;
+}
 
-.md-sidebar--primary
-.md-nav--primary
-> .md-nav__list
-> .md-nav__item--section
-> .md-nav__link {
-  font-size: 1rem !important;
-  font-weight: 800 !important;
-  color: #3f51b5 !important;
+.md-tabs__link {
+  font-weight: 600;
+  opacity: 0.82;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover {
+  opacity: 1;
+}
+
+/* 사이트 제목 */
+.md-header__title {
+  font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
 }
 
-
-/* 혹시 Material 버전에 따라 section link 구조가 달라지는 경우까지 보완 */
-.md-sidebar--primary
-.md-nav--primary
-.md-nav__item--section
-> .md-nav__link {
-  font-size: 1rem !important;
-  font-weight: 800 !important;
-  color: #3f51b5 !important;
+/* ---------------------------------------------------------
+   3. 본문 레이아웃 / 제목
+   --------------------------------------------------------- */
+.md-content__inner {
+  padding-bottom: 3rem;
 }
 
-
-/* =========================================================
-   Left Navigation - Depth Indentation
-   navigation.sections는 사용하지 않고
-   아코디언 방식의 계층 구조 유지
-   ========================================================= */
-
-
-/* 2 Depth */
-.md-nav--primary
-.md-nav__item
-.md-nav__list
-.md-nav__item > .md-nav__link {
-  margin-left: 0.4rem;
+.md-typeset h1 {
+  color: var(--guide-navy);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  border-bottom: 2px solid var(--guide-border);
+  padding-bottom: 0.45rem;
+  margin-bottom: 1.3rem;
 }
 
-
-/* 3 Depth */
-.md-nav--primary
-.md-nav__item
-.md-nav__list
-.md-nav__item
-.md-nav__list
-.md-nav__item > .md-nav__link {
-  margin-left: 0.8rem;
+.md-typeset h2 {
+  color: var(--guide-navy);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  margin-top: 2.2rem;
 }
 
-
-/* 4 Depth */
-.md-nav--primary
-.md-nav__item
-.md-nav__list
-.md-nav__item
-.md-nav__list
-.md-nav__item
-.md-nav__list
-.md-nav__item > .md-nav__link {
-  margin-left: 1.2rem;
+.md-typeset h3 {
+  color: var(--guide-blue);
+  font-weight: 700;
 }
 
-
-/* 5 Depth */
-.md-nav--primary
-.md-nav__item
-.md-nav__list
-.md-nav__item
-.md-nav__list
-.md-nav__item
-.md-nav__list
-.md-nav__item
-.md-nav__list
-.md-nav__item > .md-nav__link {
-  margin-left: 1.6rem;
+.md-typeset p,
+.md-typeset li {
+  line-height: 1.75;
 }
 
+/* ---------------------------------------------------------
+   4. 좌측 Navigation
+   1Depth/2Depth/현재 문서를 명확하게 구분
+   --------------------------------------------------------- */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+  color: var(--guide-navy);
+  font-weight: 750;
+  border-radius: 0.35rem;
+  padding-top: 0.42rem;
+  padding-bottom: 0.42rem;
+}
 
+/* Section 제목 */
+.md-nav__item--section > .md-nav__link {
+  font-weight: 700;
+  color: var(--guide-navy);
+}
+
+/* 하위 메뉴 */
+.md-nav--primary .md-nav .md-nav__link {
+  font-size: 0.72rem;
+}
+
+/* 현재 선택 메뉴 */
+.md-nav__link--active {
+  color: var(--guide-blue) !important;
+  font-weight: 750 !important;
+  background-color: var(--guide-blue-soft);
+  border-radius: 0.35rem;
+  padding-left: 0.45rem;
+}
+
+/* Hover */
+.md-nav__link:hover {
+  color: var(--guide-blue);
+}
+
+/* 우측 TOC */
+.md-nav--secondary .md-nav__link--active {
+  background: none;
+  border-left: 3px solid var(--guide-blue);
+  border-radius: 0;
+}
+
+/* ---------------------------------------------------------
+   5. 코드 블록
+   --------------------------------------------------------- */
+.md-typeset pre > code {
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.md-typeset .highlight {
+  border: 1px solid var(--guide-border);
+  border-radius: 0.55rem;
+  overflow: hidden;
+}
+
+/* 인라인 코드 */
+.md-typeset code {
+  border-radius: 0.25rem;
+}
+
+/* 코드 블록 상단 Copy 버튼 */
+.md-clipboard {
+  border-radius: 0.3rem;
+}
+
+/* ---------------------------------------------------------
+   6. Admonition: Tip / Note / Warning / Example
+   --------------------------------------------------------- */
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 0 0 0 0.22rem;
+  border-radius: 0.45rem;
+  box-shadow: 0 1px 3px rgba(15, 39, 69, 0.08);
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   7. 표(Table)
+   --------------------------------------------------------- */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--guide-border);
+  border-radius: 0.35rem;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--guide-blue-soft);
+  color: var(--guide-navy);
+  font-weight: 750;
+}
+
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  border-bottom: 1px solid var(--guide-border);
+}
+
+/* ---------------------------------------------------------
+   8. 링크 / 강조
+   --------------------------------------------------------- */
+.md-typeset a {
+  text-underline-offset: 0.14em;
+}
+
+.md-typeset mark {
+  padding: 0.08em 0.22em;
+  border-radius: 0.18rem;
+}
+
+/* ---------------------------------------------------------
+   9. Tabs
+   --------------------------------------------------------- */
+.md-typeset .tabbed-labels > label {
+  font-weight: 650;
+}
+
+/* ---------------------------------------------------------
+   10. Mermaid
+   --------------------------------------------------------- */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--guide-border);
+  border-radius: 0.55rem;
+}
+
+/* ---------------------------------------------------------
+   11. 검색창
+   --------------------------------------------------------- */
+.md-search__form {
+  border-radius: 0.45rem;
+}
+
+/* ---------------------------------------------------------
+   12. 작은 화면
+   --------------------------------------------------------- */
+@media screen and (max-width: 76.234375em) {
+  .md-typeset h1 {
+    font-size: 1.75rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.35rem;
+  }
+}

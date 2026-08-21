@@ -1,13 +1,32 @@
-site_name: ProObject · VBScript 실무 가이드
-site_description: VBScript·알파로스튜디오 화면 개발과 ProObject 서버 개발을 위한 프로젝트 실전 가이드
-site_author: Team VBScript Study
+site_name: Alpharo · ProObject · VBScript 개발 가이드
+site_description: Alpharo 화면 개발과 VBScript 레거시 분석, ProObject·EMB 서버 개발을 위한 금융 SI 실전 가이드
+site_author: Team Financial SI Study
 docs_dir: docs
 
 theme:
   name: material
   language: ko
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: light-blue
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+
   features:
     - navigation.tabs
+#    - navigation.sections
     - navigation.top
     - navigation.prune
     - content.code.copy
