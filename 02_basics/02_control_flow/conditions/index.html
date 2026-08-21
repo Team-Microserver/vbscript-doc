@@ -219,7 +219,37 @@
           
   
   
-  VBScript 실전 개발 가이드
+  VBScript 개발 가이드
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../03_proobject/00_overview/01_proobject_overview/" class="md-tabs__link">
+          
+  
+  
+  ProObject 개발 가이드
 
         </a>
       </li>
@@ -349,7 +379,7 @@
   <span class="md-ellipsis">
     
   
-    VBScript 실전 개발 가이드
+    VBScript 개발 가이드
   
 
     
@@ -365,7 +395,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    VBScript 실전 개발 가이드
+    VBScript 개발 가이드
   
 
           </label>
@@ -596,65 +626,327 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#if-then" class="md-nav__link">
+  <a href="#1-if-then" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If ... Then
+        1. If ... Then
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-then-else" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If ... Then ... Else
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elseif" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ElseIf
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-if" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        한 줄 If와 블록 If
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#select-case" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Select Case
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="1. If ... Then">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        조기 종료 패턴
+        기본 구조
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-if-then-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. If ... Then ... Else
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. If ... Then ... Else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        기본 구조
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-elseif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ElseIf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. ElseIf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        범위 조건 처리
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 논리 연산자
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 논리 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        And
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Or
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 괄호를 사용한 조건 그룹화
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 문자열 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-empty-null-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Empty, Null, Nothing과 조건문
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Empty, Null, Nothing과 조건문">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Null 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nothing 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 한 줄 If
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-select-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Select Case
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Select Case">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        여러 값을 하나의 Case에서 처리
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        범위 조건
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 조기 종료 패턴
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 화면 프로그램에서 자주 보는 조건문 패턴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 화면 프로그램에서 자주 보는 조건문 패턴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        조회 조건 검증
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        업무 상태별 분기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        서버 응답 결과 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 기존 소스를 읽을 때 확인할 것
       
     </span>
   </a>
@@ -1209,6 +1501,63 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../03_proobject/00_overview/01_proobject_overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ProObject 개발 가이드
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1236,65 +1585,327 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#if-then" class="md-nav__link">
+  <a href="#1-if-then" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If ... Then
+        1. If ... Then
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-then-else" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If ... Then ... Else
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elseif" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ElseIf
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-if" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        한 줄 If와 블록 If
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#select-case" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Select Case
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="1. If ... Then">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        조기 종료 패턴
+        기본 구조
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-if-then-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. If ... Then ... Else
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. If ... Then ... Else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        기본 구조
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-elseif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ElseIf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. ElseIf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        범위 조건 처리
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 논리 연산자
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 논리 연산자">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        And
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Or
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 괄호를 사용한 조건 그룹화
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 문자열 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-empty-null-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Empty, Null, Nothing과 조건문
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Empty, Null, Nothing과 조건문">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Null 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nothing 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 한 줄 If
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-select-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Select Case
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Select Case">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        여러 값을 하나의 Case에서 처리
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        범위 조건
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 조기 종료 패턴
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 화면 프로그램에서 자주 보는 조건문 패턴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 화면 프로그램에서 자주 보는 조건문 패턴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        조회 조건 검증
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        업무 상태별 분기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        서버 응답 결과 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 기존 소스를 읽을 때 확인할 것
       
     </span>
   </a>
@@ -1319,68 +1930,379 @@
 
 
 <h1 id="_1">조건문<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>조건문은 화면 입력값 검증, 버튼 활성화 여부, 업무 상태별 처리 분기 등에 사용됩니다. 실무 화면에서는 거의 모든 이벤트에 등장한다고 봐도 됩니다.</p>
-<h2 id="if-then">If ... Then<a class="headerlink" href="#if-then" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>If amount &gt; 0 Then
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    MsgBox "금액이 입력되었습니다."
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>End If
+<p>조건문은 <strong>값이나 상태에 따라 처리 흐름을 분기</strong>할 때 사용합니다.<br />
+VBScript 화면 프로그램에서는 입력값 검증, 조회/저장 가능 여부 판단, 업무 상태별 분기, 버튼 이벤트 처리 등에 매우 자주 등장합니다.</p>
+<p>Java나 JavaScript의 <code>if</code>, <code>else if</code>, <code>switch</code>와 개념은 거의 동일하므로, 문법 차이만 익히면 어렵지 않게 읽을 수 있습니다.</p>
+<hr />
+<h2 id="1-if-then">1. If ... Then<a class="headerlink" href="#1-if-then" title="Permanent link">&para;</a></h2>
+<p>가장 기본적인 조건문입니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">amount</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">If</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"금액이 입력되었습니다."</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
 </span></code></pre></div>
-<h2 id="if-then-else">If ... Then ... Else<a class="headerlink" href="#if-then-else" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>If balance &gt;= withdrawalAmount Then
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    result = "가능"
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Else
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    result = "잔액부족"
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>End If
+<p>조건식의 결과가 <code>True</code>이면 <code>Then</code> 아래의 문장을 실행합니다.</p>
+<h3 id="_2">기본 구조<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">If</span><span class="w"> </span><span class="err">조건식 Then</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="err">실행문</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
 </span></code></pre></div>
-<h2 id="elseif">ElseIf<a class="headerlink" href="#elseif" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>If grade = "A" Then
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    rate = 0.01
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ElseIf grade = "B" Then
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    rate = 0.02
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Else
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    rate = 0.03
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>End If
+<p>예를 들어 고객번호가 입력되었는지 확인할 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerNo</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객번호가 입력되었습니다."</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
 </span></code></pre></div>
-<h2 id="if-if">한 줄 If와 블록 If<a class="headerlink" href="#if-if" title="Permanent link">&para;</a></h2>
-<p>간단한 명령은 한 줄로 작성할 수 있습니다.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>If amount &lt; 0 Then amount = 0
+<div class="admonition tip">
+<p class="admonition-title">VBScript의 비교 연산자</p>
+<p>VBScript에서는 JavaScript의 <code>===</code>, <code>!==</code> 대신 주로 다음 연산자를 사용합니다.</p>
+<table>
+<thead>
+<tr>
+<th>의미</th>
+<th>VBScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>같다</td>
+<td><code>=</code></td>
+</tr>
+<tr>
+<td>같지 않다</td>
+<td><code>&lt;&gt;</code></td>
+</tr>
+<tr>
+<td>크다</td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td>작다</td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td>크거나 같다</td>
+<td><code>&gt;=</code></td>
+</tr>
+<tr>
+<td>작거나 같다</td>
+<td><code>&lt;=</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="2-if-then-else">2. If ... Then ... Else<a class="headerlink" href="#2-if-then-else" title="Permanent link">&para;</a></h2>
+<p>조건이 참일 때와 거짓일 때의 처리를 모두 작성할 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">balance</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">withdrawalAmount</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">result</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100000</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">withdrawalAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50000</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">If</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">withdrawalAmount</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"출금 가능"</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">Else</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"잔액 부족"</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
 </span></code></pre></div>
-<p>하지만 실무 유지보수에서는 블록 형태가 더 읽기 쉽습니다.</p>
-<h2 id="select-case">Select Case<a class="headerlink" href="#select-case" title="Permanent link">&para;</a></h2>
-<p>하나의 값에 따라 여러 분기를 처리할 때 유용합니다.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Select Case tradeType
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    Case "01"
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        tradeName = "매수"
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    Case "02"
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        tradeName = "매도"
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    Case Else
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        tradeName = "기타"
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>End Select
+<h3 id="_3">기본 구조<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">If</span><span class="w"> </span><span class="err">조건식 Then</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="err">참일 때 실행문</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">Else</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="err">거짓일 때 실행문</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<p>화면 프로그램에서는 입력 여부에 따라 버튼 활성화 여부를 결정하는 식으로도 사용할 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerNo</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">btnSearch</span><span class="p">.</span><span class="n">Enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">True</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">Else</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">btnSearch</span><span class="p">.</span><span class="n">Enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">False</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<hr />
+<h2 id="3-elseif">3. ElseIf<a class="headerlink" href="#3-elseif" title="Permanent link">&para;</a></h2>
+<p>여러 조건을 순서대로 검사해야 할 때 사용합니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">grade</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">rate</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"B"</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">If</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"A"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">ElseIf</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"B"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.02</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">ElseIf</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"C"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.03</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">Else</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<p>위에서부터 조건을 검사하고, 처음으로 <code>True</code>가 된 블록만 실행합니다.</p>
+<h3 id="_4">범위 조건 처리<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">score</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">grade</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">87</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">If</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"A"</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">ElseIf</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"B"</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">ElseIf</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">70</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"C"</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">Else</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">조건 순서가 중요합니다</p>
+<p>범위 조건은 일반적으로 큰 값부터 작은 값 순서로 작성해야 합니다. 먼저 <code>score &gt;= 70</code>을 검사하면 90점도 그 조건에서 처리되어 이후 조건으로 내려가지 않습니다.</p>
+</div>
+<hr />
+<h2 id="4">4. 논리 연산자<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>여러 조건을 조합할 때 <code>And</code>, <code>Or</code>, <code>Not</code>을 사용합니다.</p>
+<h3 id="and">And<a class="headerlink" href="#and" title="Permanent link">&para;</a></h3>
+<p>모든 조건이 참일 때만 전체 조건이 참입니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerNo</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="ow">And</span><span class="w"> </span><span class="n">accountNo</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"조회 가능합니다."</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<h3 id="or">Or<a class="headerlink" href="#or" title="Permanent link">&para;</a></h3>
+<p>조건 중 하나라도 참이면 전체 조건이 참입니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">If</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"01"</span><span class="w"> </span><span class="ow">Or</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"02"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"처리 가능한 상태입니다."</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<h3 id="not">Not<a class="headerlink" href="#not" title="Permanent link">&para;</a></h3>
+<p>조건을 반대로 뒤집습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">If</span><span class="w"> </span><span class="ow">Not</span><span class="w"> </span><span class="n">isValid</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"입력값을 확인하세요."</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>의미</th>
+<th>VBScript</th>
+<th>Java / JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND</td>
+<td><code>And</code></td>
+<td><code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td>OR</td>
+<td><code>Or</code></td>
+<td><code>||</code></td>
+</tr>
+<tr>
+<td>NOT</td>
+<td><code>Not</code></td>
+<td><code>!</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 괄호를 사용한 조건 그룹화<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>조건이 복잡해지면 괄호로 우선순위를 명확하게 표현하는 것이 좋습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">If</span><span class="w"> </span><span class="p">(</span><span class="n">customerType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"01"</span><span class="w"> </span><span class="ow">Or</span><span class="w"> </span><span class="n">customerType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"02"</span><span class="p">)</span><span class="w"> </span><span class="ow">And</span><span class="w"> </span><span class="n">useYn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Y"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"처리 대상 고객입니다."</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<p>업무 조건이 길어질수록 괄호를 사용해야 유지보수가 쉽습니다.</p>
+<hr />
+<h2 id="6">6. 문자열 비교<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>VBScript에서는 문자열 비교에도 <code>=</code>와 <code>&lt;&gt;</code>를 사용합니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"김고객"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객이 일치합니다."</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<p>빈 문자열 확인은 다음처럼 자주 작성합니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객명을 입력하세요."</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<p>공백만 입력된 경우까지 고려하려면 <code>Trim</code>을 함께 사용합니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">If</span><span class="w"> </span><span class="nb">Trim</span><span class="p">(</span><span class="n">customerName</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객명을 입력하세요."</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<hr />
+<h2 id="7-empty-null-nothing">7. Empty, Null, Nothing과 조건문<a class="headerlink" href="#7-empty-null-nothing" title="Permanent link">&para;</a></h2>
+<p>VBScript에서는 단순한 빈 문자열 외에도 <code>Empty</code>, <code>Null</code>, <code>Nothing</code>을 구분해서 봐야 합니다.</p>
+<h3 id="empty">Empty 확인<a class="headerlink" href="#empty" title="Permanent link">&para;</a></h3>
+<p>초기화되지 않은 Variant 변수는 <code>Empty</code>일 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">value</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">If</span><span class="w"> </span><span class="nb">IsEmpty</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"값이 초기화되지 않았습니다."</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<h3 id="null">Null 확인<a class="headerlink" href="#null" title="Permanent link">&para;</a></h3>
+<p>DB 조회 결과나 외부 데이터 처리에서 <code>Null</code>이 들어올 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">If</span><span class="w"> </span><span class="nb">IsNull</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"값이 Null입니다."</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Null을 <code>=</code>로 직접 비교하지 마세요</p>
+<p><code>Null</code> 확인은 다음과 같이 <code>IsNull()</code>을 사용합니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">If</span><span class="w"> </span><span class="nb">IsNull</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"Null 값입니다."</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+</div>
+<h3 id="nothing">Nothing 확인<a class="headerlink" href="#nothing" title="Permanent link">&para;</a></h3>
+<p>객체 참조가 없는지 확인할 때 사용합니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">If</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="ow">Is</span><span class="w"> </span><span class="n">Nothing</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"객체가 생성되지 않았습니다."</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<hr />
+<h2 id="8-if">8. 한 줄 If<a class="headerlink" href="#8-if" title="Permanent link">&para;</a></h2>
+<p>간단한 실행문은 한 줄로 작성할 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">If</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">Then</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</span></code></pre></div>
+<p>또는:</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerNo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span><span class="w"> </span><span class="k">Exit</span><span class="w"> </span><span class="k">Sub</span>
+</span></code></pre></div>
+<p>짧은 검증에는 편리하지만, 조건이 길거나 처리문이 여러 개라면 블록 형태가 더 읽기 좋습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">If</span><span class="w"> </span><span class="n">customerNo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객번호를 입력하세요."</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="k">Exit</span><span class="w"> </span><span class="kd">Sub</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nf">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<hr />
+<h2 id="9-select-case">9. Select Case<a class="headerlink" href="#9-select-case" title="Permanent link">&para;</a></h2>
+<p>하나의 값에 따라 여러 분기로 나눌 때 사용합니다. Java/JavaScript의 <code>switch</code>와 같은 역할입니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">tradeType</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">tradeName</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">tradeType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"01"</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">Select</span><span class="w"> </span><span class="k">Case</span><span class="w"> </span><span class="n">tradeType</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"01"</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">        </span><span class="n">tradeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"매수"</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"02"</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">        </span><span class="n">tradeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"매도"</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="k">Else</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">        </span><span class="n">tradeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"기타"</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="k">End</span><span class="w"> </span><span class="k">Select</span>
+</span></code></pre></div>
+<h3 id="case">여러 값을 하나의 Case에서 처리<a class="headerlink" href="#case" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">Select</span><span class="w"> </span><span class="k">Case</span><span class="w"> </span><span class="n">status</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w"> </span><span class="s2">"02"</span><span class="p">,</span><span class="w"> </span><span class="s2">"03"</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"정상 처리 상태입니다."</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w"> </span><span class="s2">"99"</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"오류 또는 종료 상태입니다."</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="k">Else</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"알 수 없는 상태입니다."</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="k">End</span><span class="w"> </span><span class="k">Select</span>
+</span></code></pre></div>
+<h3 id="_5">범위 조건<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><code>Case Is</code>를 이용해 비교 조건도 작성할 수 있습니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kd">Dim</span><span class="w"> </span><span class="nv">score</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">Select</span><span class="w"> </span><span class="k">Case</span><span class="w"> </span><span class="n">score</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="ow">Is</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">        </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"A"</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="ow">Is</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">80</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">        </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"B"</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="ow">Is</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">70</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">        </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"C"</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="k">Else</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">        </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"D"</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="k">End</span><span class="w"> </span><span class="k">Select</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Select Case를 쓰기 좋은 경우</p>
-<p>동일한 변수에 대해 <code>If ... ElseIf</code>가 세 번 이상 반복된다면 <code>Select Case</code>가 업무 코드를 읽기 더 쉬울 수 있습니다.</p>
+<p>같은 변수에 대해 <code>If ... ElseIf</code>가 계속 반복된다면 <code>Select Case</code>가 더 읽기 쉬울 수 있습니다.</p>
 </div>
-<h2 id="_2">조기 종료 패턴<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>화면 이벤트에서는 잘못된 입력을 발견하면 즉시 빠져나오는 패턴이 자주 사용됩니다.</p>
-<div class="admonition example">
-<p class="admonition-title">Guard Clause 형태</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Sub btnSave_Click()
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    If Trim(txtCustomerName.Text) = "" Then
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        MsgBox "고객명을 입력하세요."
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        Exit Sub
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    End If
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    If Not IsNumeric(txtAmount.Text) Then
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        MsgBox "금액을 확인하세요."
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        Exit Sub
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    End If
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    Call SaveData()
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>End Sub
+<hr />
+<h2 id="10">10. 조기 종료 패턴<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>실무 화면 이벤트에서는 잘못된 입력을 발견하면 즉시 프로시저를 종료하는 패턴이 자주 사용됩니다.</p>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kd">Sub</span><span class="w"> </span><span class="nf">btnSave_Click</span><span class="p">()</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="k">If</span><span class="w"> </span><span class="nb">Trim</span><span class="p">(</span><span class="n">txtCustomerName</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객명을 입력하세요."</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">        </span><span class="k">Exit</span><span class="w"> </span><span class="kd">Sub</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span><span class="nf">End</span><span class="w"> </span><span class="k">If</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="k">If</span><span class="w"> </span><span class="ow">Not</span><span class="w"> </span><span class="nb">IsNumeric</span><span class="p">(</span><span class="n">txtAmount</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"금액을 확인하세요."</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">        </span><span class="k">Exit</span><span class="w"> </span><span class="kd">Sub</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">    </span><span class="nf">End</span><span class="w"> </span><span class="k">If</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">    </span><span class="k">If</span><span class="w"> </span><span class="nb">CDbl</span><span class="p">(</span><span class="n">txtAmount</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"금액은 0보다 커야 합니다."</span>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">        </span><span class="k">Exit</span><span class="w"> </span><span class="kd">Sub</span>
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="w">    </span><span class="nf">End</span><span class="w"> </span><span class="k">If</span>
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="w">    </span><span class="k">Call</span><span class="w"> </span><span class="n">SaveData</span><span class="p">()</span>
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="k">End</span><span class="w"> </span><span class="k">Sub</span>
 </span></code></pre></div>
-</div>
 <p>조건문을 과도하게 중첩하기보다 검증 실패 시 빠르게 종료하면 정상 처리 흐름이 아래쪽에 자연스럽게 남습니다.</p>
+<hr />
+<h2 id="11">11. 화면 프로그램에서 자주 보는 조건문 패턴<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<h3 id="_6">조회 조건 검증<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">If</span><span class="w"> </span><span class="nb">Trim</span><span class="p">(</span><span class="n">txtCustomerNo</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"고객번호를 입력하세요."</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="k">Exit</span><span class="w"> </span><span class="kd">Sub</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nf">End</span><span class="w"> </span><span class="k">If</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">Call</span><span class="w"> </span><span class="n">SearchCustomer</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="_7">업무 상태별 분기<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">Select</span><span class="w"> </span><span class="k">Case</span><span class="w"> </span><span class="n">workStatus</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"01"</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">        </span><span class="k">Call</span><span class="w"> </span><span class="n">ProcessRequest</span><span class="p">()</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"02"</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">        </span><span class="k">Call</span><span class="w"> </span><span class="n">ProcessApproval</span><span class="p">()</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="s2">"03"</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">        </span><span class="k">Call</span><span class="w"> </span><span class="n">ProcessComplete</span><span class="p">()</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">    </span><span class="k">Case</span><span class="w"> </span><span class="k">Else</span>
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="w">        </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"처리할 수 없는 상태입니다."</span>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="k">End</span><span class="w"> </span><span class="k">Select</span>
+</span></code></pre></div>
+<h3 id="_8">서버 응답 결과 확인<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="language-vbscript highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">If</span><span class="w"> </span><span class="n">resultCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0000"</span><span class="w"> </span><span class="k">Then</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"정상 처리되었습니다."</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">Else</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="nb">MsgBox</span><span class="w"> </span><span class="s2">"처리 중 오류가 발생했습니다."</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">End</span><span class="w"> </span><span class="k">If</span>
+</span></code></pre></div>
+<hr />
+<h2 id="12">12. 기존 소스를 읽을 때 확인할 것<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<p>조건문을 분석할 때는 문법 자체보다 <strong>어떤 업무 조건으로 흐름이 갈라지는지</strong>를 확인하는 것이 중요합니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>1. 어떤 값을 검사하는가?
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>2. 정상 조건과 오류 조건은 무엇인가?
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>3. 조건이 참이면 어떤 함수가 호출되는가?
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>4. Exit Sub / Exit Function으로 조기 종료되는가?
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>5. 조건에 따라 서버 호출 여부가 달라지는가?
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>6. 업무 상태 코드에 따라 처리가 어떻게 달라지는가?
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">조건문 분석 핵심</p>
+<p>기존 금융 화면 소스에서는 <code>If</code> 자체보다 <code>status</code>, <code>resultCode</code>, <code>useYn</code>, <code>searchYn</code> 같은 <strong>업무 상태 변수의 의미</strong>를 파악하는 것이 더 중요합니다.</p>
+</div>
 
 
 
