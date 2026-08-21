@@ -62,7 +62,7 @@ nav:
           - 스크립트 실행 및 검증: 01_env/vbscript_run_verification.md
           - 문제 해결 및 운영 기준: 01_env/troubleshooting_guidelines.md
 
-  - VBScript 실전 개발 가이드:
+  - VBScript 개발 가이드:
       - 00. 학습 방향:
           - 학습 로드맵: 02_basics/00_getting_started/learning_guide.md
           - VBScript 개요와 특징: 02_basics/00_getting_started/vbscript_overview.md
@@ -126,3 +126,46 @@ nav:
           - 자주 쓰는 함수 치트시트: 02_basics/appendix/cheatsheet.md
           - 코딩 규칙 권장안: 02_basics/appendix/coding_conventions.md
           - 참고 자료: 02_basics/appendix/references.md
+
+
+
+  - ProObject 개발 가이드:
+      - 00. 시작하기:
+          - ProObject 개요: 03_proobject/00_overview/01_proobject_overview.md
+          - ProObject 아키텍처: 03_proobject/00_overview/02_architecture.md
+          - 사전 학습 로드맵: 03_proobject/00_overview/03_learning_roadmap.md
+
+      - 01. 개발환경:
+          - ProStudio · ProManager: 03_proobject/01_environment/01_prostudio_promanager.md
+
+      - 02. 프로그래밍 모델:
+          - 객체 모델: 03_proobject/02_programming_model/01_object_model.md
+          - DO · DOF · QO: 03_proobject/02_programming_model/02_data_layer.md
+
+      - 03. EMB 개발:
+          - EMB 개요: 03_proobject/03_emb/01_emb_overview.md
+          - EMB Designer 화면과 개발 방식: 03_proobject/03_emb/02_emb_designer.md
+          - EMB Node와 Mapping: 03_proobject/03_emb/03_emb_nodes_mapping.md
+          - EMB 조건 · 반복 · 모듈: 03_proobject/03_emb/04_emb_control_flow.md
+          - EMB에서 다른 Service 호출: 03_proobject/03_emb/05_emb_service_call.md
+          - EMB와 Generated Java Source: 03_proobject/03_emb/06_emb_generated_source.md
+
+      - 04. 온라인 서비스 개발:
+          - 온라인 서비스 개발 절차: 03_proobject/04_service_development/01_online_service_process.md
+          - Transaction · Exception · Log: 03_proobject/04_service_development/02_transaction_exception_log.md
+          - 서비스 연동과 메시지: 03_proobject/04_service_development/03_integration.md
+
+      - 05. 배치:
+          - 배치와 Job Object: 03_proobject/05_batch/01_job_object.md
+
+      - 06. 테스트 · 배포:
+          - 테스트와 디버깅: 03_proobject/06_test_deploy/01_test_debug.md
+          - 형상관리 · 빌드 · 배포: 03_proobject/06_test_deploy/02_build_deploy.md
+
+      - 07. 프로젝트 분석:
+          - 기존 서비스 분석 방법: 03_proobject/07_project_analysis/01_existing_service_analysis.md
+          - EMB 분석 체크리스트: 03_proobject/07_project_analysis/02_emb_analysis_checklist.md
+          - 현장 투입 체크리스트: 03_proobject/07_project_analysis/03_field_checklist.md
+
+      - 08. 빠른 참조:
+          - ProObject 용어 정리: 03_proobject/08_quick_reference/01_terms.md

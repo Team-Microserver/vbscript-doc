@@ -1,23 +1,4 @@
-# Welcome to MkDocs
-
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
-
-# ProObject 사전 학습 가이드
+# ProObject 사전 학습 가이드 v2
 
 ProObject 프로젝트 투입 전 전체 구조와 개발 프로세스를 학습하기 위한 MkDocs Markdown 문서입니다.
 
@@ -73,4 +54,3 @@ docs/
 - Bash/Git: `bash`
 - Mermaid: `mermaid`
 - 개념 구조: `text`
-
