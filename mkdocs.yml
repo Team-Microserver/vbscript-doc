@@ -24,7 +24,7 @@ plugins:
       lang: ko
   - redirects:
       redirect_maps:
-        index.md: vbscript_core_summary/00_getting_started/learning_guide.md
+        index.md: 02_basics/00_getting_started/learning_guide.md
 
 markdown_extensions:
   - admonition
