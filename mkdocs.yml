@@ -188,3 +188,7 @@ nav:
 
       - 08. 빠른 참조:
           - ProObject 용어 정리: 03_proobject/08_quick_reference/01_terms.md
+
+  - SQL Query 가이드:
+    - 00. 업무중 쿼리정리: 
+      - 01. WRAP 계좌 관리자 변경이력 조회 SQL 분석 가이드: 04_SQL/00.working/wrap_account_manager_history_sql_guide.md
