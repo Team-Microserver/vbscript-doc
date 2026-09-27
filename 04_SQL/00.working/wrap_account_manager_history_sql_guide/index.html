@@ -1,0 +1,1629 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Alpharo 화면 개발과 VBScript 레거시 분석, ProObject·EMB 서버 개발을 위한 금융 SI 실전 가이드">
+      
+      
+        <meta name="author" content="Team Financial SI Study">
+      
+      
+      
+        <link rel="prev" href="../../../03_proobject/08_quick_reference/01_terms/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>01. WRAP 계좌 관리자 변경이력 조회 SQL 분석 가이드 - ProObject · VBScript 개발 가이드</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wrap-sql" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../../.." title="ProObject · VBScript 개발 가이드" class="md-header__button md-logo" aria-label="ProObject · VBScript 개발 가이드" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ProObject · VBScript 개발 가이드
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              01. WRAP 계좌 관리자 변경이력 조회 SQL 분석 가이드
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="다크 모드로 전환"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드로 전환" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-label="라이트 모드로 전환"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드로 전환" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="공유" aria-label="공유" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01_env/vbscript_execution_environment/" class="md-tabs__link">
+          
+  
+  
+  VBScript 실행환경 설정
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../02_basics/00_getting_started/learning_guide/" class="md-tabs__link">
+          
+  
+  
+  VBScript 개발 가이드
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../03_proobject/00_overview/01_proobject_overview/" class="md-tabs__link">
+          
+  
+  
+  ProObject 개발 가이드
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  SQL Query 가이드
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ProObject · VBScript 개발 가이드" class="md-nav__button md-logo" aria-label="ProObject · VBScript 개발 가이드" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ProObject · VBScript 개발 가이드
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../01_env/vbscript_execution_environment/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VBScript 실행환경 설정
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../02_basics/00_getting_started/learning_guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VBScript 개발 가이드
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../03_proobject/00_overview/01_proobject_overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ProObject 개발 가이드
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Query 가이드
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL Query 가이드
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. 업무중 쿼리정리
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    00. 업무중 쿼리정리
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. WRAP 계좌 관리자 변경이력 조회 SQL 분석 가이드
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. WRAP 계좌 관리자 변경이력 조회 SQL 분석 가이드
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 쿼리의 업무 목적
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 전체 데이터 흐름
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 쿼리의 업무 목적
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 전체 데이터 흐름
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="wrap-sql">WRAP 계좌 관리자 변경이력 조회 SQL 분석 가이드<a class="headerlink" href="#wrap-sql" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>문서 목적</strong>\
+기존 WRAP 계좌 관리자 변경이력 조회 SQL을 현재 테이블 구조에 맞게
+치환한 쿼리를 기준으로,\
+<strong>조회 목적 → 데이터 흐름 → 서브쿼리 계층 → 분석 함수 → 관리기간 산출
+→ 평가금액 → 정렬/페이징</strong> 순서로 이해할 수 있도록 정리한 문서이다.\
+향후 신규 조회 SQL을 간소화하거나 유지보수할 때 참고하는 것을 목적으로
+한다.</p>
+</blockquote>
+<hr />
+<h2 id="1">1. 쿼리의 업무 목적<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>이 SQL은 단순히 <strong>현재 계좌의 관리자</strong>를 조회하는 SQL이 아니다.</p>
+<p>핵심 목적은 다음과 같다.</p>
+<ol>
+<li><code>모고객식별번호(MO_CPIN)</code>와 <code>관리부서코드(MNGM_DEPT_CD)</code>를
+    입력받는다.</li>
+<li><code>CRM1000M</code>에서 해당 모고객에 속한 고객의 <code>고객식별번호(CPIN)</code>를
+    구한다.</li>
+<li>해당 고객의 계좌 및 WRAP 계약 정보를 찾는다.</li>
+<li>현재 정보와 과거 변경이력을 결합한다.</li>
+<li>같은 WRAP 계약 안에서 관리자 변경 순서를 시간순으로 정렬한다.</li>
+<li><code>LAG()</code>를 이용하여 <strong>직전 관리자와 현재 관리자</strong>를 비교한다.</li>
+<li>실제 관리자가 변경된 시점을 추출한다.</li>
+<li><code>MIN() OVER</code>, <code>MAX() OVER</code> 등을 이용하여 관리 시작/종료 구간을
+    계산한다.</li>
+<li>필요 시 기준일의 평가금액을 결합한다.</li>
+<li>정렬 후 Continuation 방식으로 다음 페이지를 조회한다.</li>
+</ol>
+<p>즉, 최종 결과의 개념은 다음과 같다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>계좌        관리자      관리시작일      관리종료일
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>--------------------------------------------------
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>계좌 A      관리자 1001  20260101       20260315
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>계좌 A      관리자 2001  20260316       20260520
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>계좌 A      관리자 3001  20260521       현재
+</span></code></pre></div>
+<hr />
+<h2 id="2">2. 전체 데이터 흐름<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[입력 파라미터]
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>모고객식별번호 :mo_cpin
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>관리부서코드   :mngm_dept_cd
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        ▼
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>[CRM1000M : CRM 고객조직관계기본]
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>해당 모고객에 속한 CPIN 조회
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        │
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        ▼
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>[계좌 / WRAP 관련 데이터]
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>CPIN에 해당하는 계좌 및 WRAP 계약 조회
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        │
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        ▼
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>[현재 정보 + 변경이력]
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>UNION으로 이력 데이터 구성
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        │
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        ▼
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>[시간순 정렬]
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>계좌 + WRAP상품 + WRAP계약 단위
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        │
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        ▼
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>[LAG()]
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>직전 관리자 번호 확인
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        │
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        ▼
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>[관리자 변경점 추출]
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>현재 관리자 &lt;&gt; 직전 관리자
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        │
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        ▼
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>[MIN/MAX 분석 함수]
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>관리 시작/종료 구간 산출
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        │
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        ▼
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>[평가금액]
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>기준일의 WRAP 평가금액 결합
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>        │
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>        ▼
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>[ORDER BY + Continuation 조건]
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>최종 결과 및 페이징
+</span></code></pre></div>
+<hr />
+<h1 id="3">3. 주요 테이블<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<h2 id="31-crm1000m-crm">3.1 CRM1000M --- CRM 고객조직관계기본<a class="headerlink" href="#31-crm1000m-crm" title="Permanent link">&para;</a></h2>
+<p>현재 물리 테이블:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>CRM1000M
+</span></code></pre></div>
+<p>논리명:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>CRM_고객조직관계기본
+</span></code></pre></div>
+<p>쿼리 분석상 핵심 컬럼은 다음과 같다.</p>
+<hr />
+<p>물리 컬럼                      논리 의미                  쿼리에서의 역할</p>
+<hr />
+<p><code>CPIN</code>                         고객식별번호               실제 고객 식별</p>
+<p><code>MNGM_DEPT_CD</code>                 관리부서코드               조회 대상 조직/부서
+                                                            제한</p>
+<p><code>MO_CPIN</code>                      모고객식별번호             모고객 기준으로 소속
+                                                            고객 조회</p>
+<p><code>ACNT_STFF_XCP_RGST_CUST_YN</code>   계좌직원예외등록고객여부   고객조직 관련 속성</p>
+<p><code>BNK_CNCT_ACNT_CUST_YN</code>        은행연계계좌고객여부       고객조직 관련 속성</p>
+<p><code>PUR_NEW_CUST_YN</code>              순수신규고객여부           고객조직 관련 속성</p>
+<hr />
+<p>이 쿼리에서 가장 중요한 조회는 개념적으로 다음과 같다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">CPIN</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">MNGM_DEPT_CD</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">CRM1000M</span><span class="w"> </span><span class="n">A</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">MNGM_DEPT_CD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">mngm_dept_cd</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">MO_CPIN</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">mo_cpin</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="_1">의미<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><code>MO_CPIN</code> 하나가 여러 개의 <code>CPIN</code>을 포함할 수 있으므로 이 SQL의 출발점은
+계좌번호가 아니라 다음 구조이다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>MO_CPIN
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   │
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>   ├─ CPIN 1
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>   ├─ CPIN 2
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>   └─ CPIN 3
+</span></code></pre></div>
+<p>따라서 신규 SQL을 만들 때도 <strong>"모고객 → 고객 → 계좌"</strong>라는 업무 관계를
+유지해야 하는지 먼저 판단해야 한다.</p>
+<hr />
+<h2 id="32-acc1000m-acc">3.2 ACC1000M --- ACC 계좌마스터기본<a class="headerlink" href="#32-acc1000m-acc" title="Permanent link">&para;</a></h2>
+<p>논리명:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ACC_계좌마스터기본
+</span></code></pre></div>
+<p>확인된 주요 컬럼:</p>
+<p>물리 컬럼        논리 의미         비고</p>
+<hr />
+<p><code>AACNO</code>          대체계좌번호      계좌 식별의 핵심 값
+  <code>AACNO_ENC</code>      계좌번호_암호화   암호화 계좌번호
+  <code>CPIN</code>           고객식별번호      CRM 고객과 연결
+  <code>MNGM_DEPT_CD</code>   관리부서코드      현재 관리부서
+  <code>MNGM_USR_ID</code>    관리사용자ID      현재 관리자 관련 정보
+  <code>ACNT_OPEN_DT</code>   계좌개설일자      계좌 기본정보
+  <code>ACNT_CLSG_DT</code>   계좌폐쇄일자      계좌 상태 판단 등에 사용 가능</p>
+<p>관계의 기본 개념은 다음과 같다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>CRM1000M.CPIN
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>      │
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>      ▼
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>ACC1000M.CPIN
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>      │
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>      ▼
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>   계좌(AACNO)
+</span></code></pre></div>
+<p>즉 <code>CRM1000M</code>에서 대상 고객을 결정하고, 그 고객의 계좌를 조회하는
+흐름이다.</p>
+<hr />
+<h2 id="33-wrap">3.3 WRAP 계약 식별 컬럼<a class="headerlink" href="#33-wrap" title="Permanent link">&para;</a></h2>
+<p>쿼리에서는 다음 세 값이 반복적으로 함께 사용된다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>AACNO
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>WRAP_PDCD
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>WRAP_CTSN
+</span></code></pre></div>
+<p>주석을 기준으로 의미는 다음과 같다.</p>
+<p>컬럼          의미</p>
+<hr />
+<p><code>AACNO</code>       대체계좌번호
+  <code>WRAP_PDCD</code>   WRAP상품코드
+  <code>WRAP_CTSN</code>   WRAP계약일련번호</p>
+<p>따라서 이 SQL에서는 실질적으로 다음 조합을 하나의 WRAP 계약 단위로
+취급한다고 볼 수 있다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>AACNO + WRAP_PDCD + WRAP_CTSN
+</span></code></pre></div>
+<p>이 조합이 <code>LAG()</code>나 <code>MIN()/MAX() OVER()</code>의 <code>PARTITION BY</code>에 반복적으로
+사용되는 이유도 여기에 있다.</p>
+<hr />
+<h1 id="4-sql">4. SQL 계층 구조 이해<a class="headerlink" href="#4-sql" title="Permanent link">&para;</a></h1>
+<p>기존 SQL은 여러 단계의 인라인 뷰가 중첩되어 있어 처음 보면 복잡하지만,
+역할 기준으로 나누면 다음과 같다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>최종 SELECT
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>   │
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>   ├─ 출력 컬럼 가공
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>   ├─ 평가금액 조회
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>   └─ 최종 정렬/페이징
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        │
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        ▼
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>관리기간 계산
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        │
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        ├─ MIN(CHNG_DT) OVER(...)
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        ├─ MAX(CHNG_DT) OVER(...)
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>        └─ 계약해지일 관련 MIN(...)
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>             │
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>             ▼
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>관리자 변경점 추출
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>        │
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>        └─ 현재 관리자 &lt;&gt; 이전 관리자
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>             │
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>             ▼
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>LAG() 적용
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>        │
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>        └─ 이전 관리자 번호 생성
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>             │
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>             ▼
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>현재 + 과거 이력 UNION
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>        │
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>        ▼
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>모고객 → CPIN → 계좌/WRAP 데이터
+</span></code></pre></div>
+<p>SQL을 분석할 때는 바깥 SELECT부터 읽기보다 <strong>가장 안쪽 데이터 생성부부터
+바깥쪽으로 올라오는 방식</strong>이 이해하기 쉽다.</p>
+<hr />
+<h1 id="5-lag">5. <code>LAG()</code> 함수<a class="headerlink" href="#5-lag" title="Permanent link">&para;</a></h1>
+<h2 id="51">5.1 기본 문법<a class="headerlink" href="#51" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">LAG</span><span class="p">(</span><span class="err">컬럼</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="k">offset</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="k">default</span><span class="p">]])</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="err">그룹컬럼</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="err">정렬컬럼</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>예:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">LAG</span><span class="p">(</span><span class="n">MNGM_EMPNO</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP_PDCD</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP_CTSN</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">CHNG_DT</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">BF_MNGM_EMPNO</span>
+</span></code></pre></div>
+<h3 id="_2">각 요소의 의미<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>MNGM_EMPNO</code>\
+    이전 행에서 가져올 값</li>
+<li><code>1</code>\
+    현재 행보다 한 행 이전</li>
+<li><code>PARTITION BY</code>\
+    서로 다른 WRAP 계약의 이력이 섞이지 않도록 그룹 분리</li>
+<li><code>ORDER BY CHNG_DT</code>\
+    변경일 순으로 이전/현재 관계 결정</li>
+<li><code>BF_MNGM_EMPNO</code>\
+    직전 관리자 번호</li>
+</ul>
+<hr />
+<h2 id="52">5.2 동작 예제<a class="headerlink" href="#52" title="Permanent link">&para;</a></h2>
+<p>원본:</p>
+<p>CHNG_DT    MNGM_EMPNO</p>
+<hr />
+<p>20260101   1001
+  20260201   1001
+  20260301   2001
+  20260401   2001
+  20260501   3001</p>
+<p><code>LAG()</code> 적용 후:</p>
+<p>CHNG_DT      현재 관리자   이전 관리자</p>
+<hr />
+<p>20260101            1001          NULL
+  20260201            1001          1001
+  20260301            2001          1001
+  20260401            2001          2001
+  20260501            3001          2001</p>
+<p>따라서 다음과 같은 조건을 적용하면:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">MNGM_EMPNO</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">NVL</span><span class="p">(</span><span class="n">BF_MNGM_EMPNO</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span>
+</span></code></pre></div>
+<p>동일 관리자가 계속 유지된 행은 제거되고, <strong>관리자가 실제 변경된 시점</strong>을
+중심으로 남길 수 있다.</p>
+<hr />
+<h1 id="6-partition-by">6. <code>PARTITION BY</code>의 의미<a class="headerlink" href="#6-partition-by" title="Permanent link">&para;</a></h1>
+<p>분석 함수에서 <code>PARTITION BY</code>는 일반 <code>GROUP BY</code>와 다르다.</p>
+<p>예:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">LAG</span><span class="p">(</span><span class="n">MNGM_EMPNO</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP_PDCD</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP_CTSN</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">CHNG_DT</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>의 의미는 다음과 같다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>계좌 A / 상품 01 / 계약 1
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    → 이 그룹 내부에서 LAG 계산
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>계좌 A / 상품 01 / 계약 2
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    → 별도 그룹에서 다시 LAG 계산
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>계좌 B / 상품 03 / 계약 1
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    → 또 다른 그룹에서 계산
+</span></code></pre></div>
+<h3 id="group-by"><code>GROUP BY</code>와 차이<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h3>
+<p><code>GROUP BY</code>는 여러 행을 하나의 집계 행으로 줄인다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">CHNG_DT</span><span class="p">)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">FROM</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">;</span>
+</span></code></pre></div>
+<p>반면 분석 함수의 <code>PARTITION BY</code>는 <strong>원래 행을 유지한 상태에서 각 행에
+계산 결과를 추가</strong>한다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">       </span><span class="n">CHNG_DT</span><span class="p">,</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">       </span><span class="k">MAX</span><span class="p">(</span><span class="n">CHNG_DT</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">)</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">FROM</span><span class="w"> </span><span class="p">...;</span>
+</span></code></pre></div>
+<p>이 차이를 이해하는 것이 이 SQL 분석에서 매우 중요하다.</p>
+<hr />
+<h1 id="7-min-over-max-over">7. <code>MIN() OVER()</code> / <code>MAX() OVER()</code><a class="headerlink" href="#7-min-over-max-over" title="Permanent link">&para;</a></h1>
+<p>일반 집계함수:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">MIN</span><span class="p">(</span><span class="n">CHNG_DT</span><span class="p">)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">MAX</span><span class="p">(</span><span class="n">CHNG_DT</span><span class="p">)</span>
+</span></code></pre></div>
+<p>에 <code>OVER()</code>를 붙이면 분석 함수가 된다.</p>
+<p>예:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">MIN</span><span class="p">(</span><span class="n">CHNG_DT</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">                 </span><span class="n">WRAP_PDCD</span><span class="p">,</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">                 </span><span class="n">WRAP_CTSN</span><span class="p">,</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">                 </span><span class="n">MNGM_EMPNO</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MIN_STDR_DT</span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">MAX</span><span class="p">(</span><span class="n">CHNG_DT</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">                 </span><span class="n">WRAP_PDCD</span><span class="p">,</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">                 </span><span class="n">WRAP_CTSN</span><span class="p">,</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">                 </span><span class="n">MNGM_EMPNO</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MAX_STDR_DT</span>
+</span></code></pre></div>
+<p>의미는 특정 WRAP 계약과 관리자 조합에 대해:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>최초 변경일 → 관리기간 시작 후보
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>최종 변경일 → 관리기간 종료/기준일 후보
+</span></code></pre></div>
+<p>를 얻는 것이다.</p>
+<h3 id="_3">예<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>계좌 A / 관리자 1001 / 20260101
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>계좌 A / 관리자 1001 / 20260201
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>계좌 A / 관리자 1001 / 20260215
+</span></code></pre></div>
+<p>이면:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>MIN_STDR_DT = 20260101
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>MAX_STDR_DT = 20260215
+</span></code></pre></div>
+<p>값을 각 행에서 사용할 수 있다.</p>
+<hr />
+<h1 id="8-nvl">8. <code>NVL()</code> 함수<a class="headerlink" href="#8-nvl" title="Permanent link">&para;</a></h1>
+<p>Oracle/Tibero 계열에서 NULL 값을 다른 값으로 치환할 때 사용한다.</p>
+<h2 id="_4">문법<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">NVL</span><span class="p">(</span><span class="err">값</span><span class="p">,</span><span class="w"> </span><span class="n">NULL일</span><span class="w"> </span><span class="err">때</span><span class="w"> </span><span class="err">사용할</span><span class="w"> </span><span class="err">값</span><span class="p">)</span>
+</span></code></pre></div>
+<p>예:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">NVL</span><span class="p">(</span><span class="n">BF_MNGM_EMPNO</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span>
+</span></code></pre></div>
+<p>개념적으로:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>BF_MNGM_EMPNO가 NULL이 아니면 → BF_MNGM_EMPNO
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>BF_MNGM_EMPNO가 NULL이면     → ''
+</span></code></pre></div>
+<p>또 다른 예:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">NVL</span><span class="p">(</span><span class="n">EVL_AMT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div>
+<p>평가금액이 없으면 <code>0</code>으로 반환한다.</p>
+<blockquote>
+<p>주의: Oracle에서는 빈 문자열 <code>''</code>을 문자형 NULL처럼 취급한다.\
+따라서 NULL 비교/치환 로직은 실제 DBMS의 문자열 처리 특성을 고려해야
+한다.</p>
+</blockquote>
+<hr />
+<h1 id="9-case-when">9. <code>CASE WHEN</code><a class="headerlink" href="#9-case-when" title="Permanent link">&para;</a></h1>
+<p>조건에 따라 다른 값을 반환한다.</p>
+<h2 id="_5">기본 문법<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">CASE</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="err">조건</span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="err">값</span><span class="mi">1</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="err">조건</span><span class="mi">2</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="err">값</span><span class="mi">2</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="err">값</span><span class="mi">3</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">END</span>
+</span></code></pre></div>
+<p>쿼리의 관리종료일 가공은 개념적으로 다음과 같다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">CASE</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">CTRT_CCLC_DT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'99991231'</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">''</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="n">CTRT_CCLC_DT</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MNGM_END_DT</span>
+</span></code></pre></div>
+<p>즉:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>99991231 → 현재까지 유효한 데이터 → 화면에서는 종료일 없음
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>그 외    → 실제 종료일 표시
+</span></code></pre></div>
+<p>와 같은 업무적 표현을 만든다.</p>
+<hr />
+<h1 id="10-to_date-to_char">10. <code>TO_DATE()</code>와 <code>TO_CHAR()</code><a class="headerlink" href="#10-to_date-to_char" title="Permanent link">&para;</a></h1>
+<p>날짜 문자열을 실제 DATE로 변환하거나 DATE를 문자열로 변환할 때 사용한다.</p>
+<h2 id="to_date"><code>TO_DATE</code><a class="headerlink" href="#to_date" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">TO_DATE</span><span class="p">(</span><span class="s1">'20260922'</span><span class="p">,</span><span class="w"> </span><span class="s1">'YYYYMMDD'</span><span class="p">)</span>
+</span></code></pre></div>
+<p>결과는 날짜 타입이다.</p>
+<h2 id="to_char"><code>TO_CHAR</code><a class="headerlink" href="#to_char" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">TO_CHAR</span><span class="p">(</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">TO_DATE</span><span class="p">(</span><span class="s1">'20260922'</span><span class="p">,</span><span class="w"> </span><span class="s1">'YYYYMMDD'</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="s1">'YYYYMMDD'</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>의 흐름은:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>'20260922'
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>     ↓ TO_DATE
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>2026-09-22 DATE
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>     ↓ - 1
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>2026-09-21 DATE
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>     ↓ TO_CHAR
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>'20260921'
+</span></code></pre></div>
+<p>관리자 변경일의 하루 전을 이전 관리자의 종료일로 계산하는 등의 로직에서
+사용될 수 있다.</p>
+<hr />
+<h1 id="11-union">11. <code>UNION</code><a class="headerlink" href="#11-union" title="Permanent link">&para;</a></h1>
+<p>두 SELECT 결과를 하나의 결과 집합으로 결합한다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="k">FROM</span><span class="w"> </span><span class="err">현재정보</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="k">UNION</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="k">SELECT</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="k">FROM</span><span class="w"> </span><span class="err">과거이력</span><span class="p">;</span>
+</span></code></pre></div>
+<p><code>UNION</code>은 중복 행을 제거한다.</p>
+<p>중복 제거가 필요 없다면 <code>UNION ALL</code>이 일반적으로 더 단순하고 빠르지만,
+기존 업무 SQL에서 <code>UNION</code>을 사용했다면 <strong>중복 제거 자체가 업무 로직인지
+확인한 후 변경해야 한다.</strong></p>
+<p>이 쿼리에서 UNION 계층은 특히 중요하다.</p>
+<p>관리자 변경 분석을 하기 전에:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>현재 관리자 정보
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>       +
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>과거 관리자 변경이력
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>       ↓
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>시간순 관리자 이력
+</span></code></pre></div>
+<p>을 먼저 만들어야 하기 때문이다.</p>
+<p>현재 테이블의 관리자 정보만 사용하면 과거 변경 이력이 없어져 <code>LAG()</code>로
+완전한 관리자 이력을 재구성할 수 없다.</p>
+<hr />
+<h1 id="12">12. 평가금액 조회<a class="headerlink" href="#12" title="Permanent link">&para;</a></h1>
+<p>최상위 SELECT에서는 개념적으로 다음 형태의 상관 서브쿼리가 사용된다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">NVL</span><span class="p">(</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="p">(</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">STL_EVL_AMT</span><span class="p">)</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">NAP5020P</span><span class="w"> </span><span class="n">L</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">         </span><span class="k">WHERE</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">STD_DT</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">STDR_DT</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">AACNO</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">AACNO</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">WRAP_PDCD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">WRAP_PDCD</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">WRAP_CTSN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">WRAP_CTSN</span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w">    </span><span class="p">),</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="w">    </span><span class="mi">0</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">EVL_AMT</span>
+</span></code></pre></div>
+<p>의미:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>현재 결과행의
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>  기준일
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>  계좌번호
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>  WRAP상품
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>  WRAP계약번호
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>       │
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>       ▼
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>평가 데이터 조회
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>       │
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>       ▼
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>SUM(평가금액)
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>       │
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>       ▼
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>없으면 0
+</span></code></pre></div>
+<p>이 부분은 <strong>관리자 변경이력을 만드는 핵심 로직과는 별도</strong>이다.</p>
+<p>따라서 신규 화면에서 평가금액이 필요하지 않다면 제거 후보가 될 수 있다.</p>
+<hr />
+<h1 id="13-sum">13. <code>SUM()</code> 함수<a class="headerlink" href="#13-sum" title="Permanent link">&para;</a></h1>
+<p>여러 행의 숫자 값을 합산한다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">STL_EVL_AMT</span><span class="p">)</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">NAP5020P</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="p">...;</span>
+</span></code></pre></div>
+<p>예:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>100,000
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>200,000
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>150,000
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>---------
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>450,000
+</span></code></pre></div>
+<p>결과:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>450000
+</span></code></pre></div>
+<p>상관 서브쿼리 내부의 <code>SUM()</code>은 해당 WRAP 계약의 기준일 평가금액을
+합산하는 용도로 사용된다.</p>
+<hr />
+<h1 id="14-correlated-subquery">14. 상관 서브쿼리(Correlated Subquery)<a class="headerlink" href="#14-correlated-subquery" title="Permanent link">&para;</a></h1>
+<p>다음처럼 내부 쿼리가 바깥 쿼리의 값을 참조하면 상관 서브쿼리이다.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">AACNO</span><span class="p">,</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">       </span><span class="p">(</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">           </span><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">STL_EVL_AMT</span><span class="p">)</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">             </span><span class="k">FROM</span><span class="w"> </span><span class="n">NAP5020P</span><span class="w"> </span><span class="n">L</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">AACNO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">AACNO</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">EVL_AMT</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="k">FROM</span><span class="w"> </span><span class="p">...</span>
+</span></code></pre></div>
+<p>여기서:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">L</span><span class="p">.</span><span class="n">AACNO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">AACNO</span>
+</span></code></pre></div>
+<p>의 <code>A.AACNO</code>는 바깥 SELECT의 현재 행 값이다.</p>
+<p>개념적으로 바깥 결과행마다 조건에 맞는 값을 계산한다고 이해하면 쉽다.</p>
+<p>다만 실제 실행 방식은 옵티마이저가 변환할 수 있으므로, 물리적으로 반드시
+행마다 독립 실행된다고 단정해서는 안 된다.</p>
+<hr />
+<h1 id="15-order-by">15. <code>ORDER BY</code><a class="headerlink" href="#15-order-by" title="Permanent link">&para;</a></h1>
+<p>이 쿼리에서 정렬은 단순 화면 표시 목적만 있는 것이 아니다.</p>
+<p>관리자 이력 계산에서는:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">CHNG_DT</span>
+</span></code></pre></div>
+<p>가 <strong>어떤 관리자가 이전 관리자이고 다음 관리자인지 결정</strong>한다.</p>
+<p>따라서 <code>LAG()</code> 안의 <code>ORDER BY</code>는 업무 로직의 일부이다.</p>
+<p>반면 최종 결과의 <code>ORDER BY</code>는:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>고객
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>→ 관리기간
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>→ 계좌
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>→ WRAP 상품
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>→ WRAP 계약
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>→ 변경일
+</span></code></pre></div>
+<p>등의 순서로 결과를 정렬하고 Continuation 페이징의 기준을 제공한다.</p>
+<blockquote>
+<p>동일 정렬키가 여러 건 존재할 수 있다면 결과 순서를 완전히 결정할 수
+있는 추가 키가 필요한지 확인해야 한다.\
+페이징 쿼리에서는 정렬의 결정성이 특히 중요하다.</p>
+</blockquote>
+<hr />
+<h1 id="16-continuation">16. Continuation 방식 페이징<a class="headerlink" href="#16-continuation" title="Permanent link">&para;</a></h1>
+<p>사진의 하단 조건에서는 다음과 같은 continuation 파라미터가 사용된다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>cont_cpin
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>cont_ctrt_cclc_dt
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>cont_ctrt_dt
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>cont_ctno
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>cont_apno
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>cont_ctsn
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>...
+</span></code></pre></div>
+<p>개념적으로는 마지막으로 조회한 행의 정렬키를 저장했다가 다음 요청에서:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>"지난 페이지 마지막 행보다 뒤에 있는 데이터"
+</span></code></pre></div>
+<p>만 조회하는 방식이다.</p>
+<p>일반적인 페이지 번호 기반:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>1페이지
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>2페이지
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>3페이지
+</span></code></pre></div>
+<p>와 달리:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>마지막키 = X
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>→ X 이후 데이터 N건
+</span></code></pre></div>
+<p>형태로 동작한다.</p>
+<p>마지막에는:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">ROWNUM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">:</span><span class="n">pgcnt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</span></code></pre></div>
+<p>형태를 사용하여 요청 건수보다 한 건 더 조회하고, <strong>다음 페이지 존재
+여부</strong>를 판단하는 패턴으로 볼 수 있다.</p>
+<hr />
+<h1 id="17-rownum">17. <code>ROWNUM</code><a class="headerlink" href="#17-rownum" title="Permanent link">&para;</a></h1>
+<p>Oracle 계열에서 결과행에 부여되는 의사 컬럼(pseudocolumn)이다.</p>
+<p>예:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="k">FROM</span><span class="w"> </span><span class="p">(...)</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">ROWNUM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+</span></code></pre></div>
+<p>10건 화면이라면 11건을 조회하여:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>1~10건 → 현재 화면 표시
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>11번째 → 다음 데이터 존재 여부 판단
+</span></code></pre></div>
+<p>에 활용할 수 있다.</p>
+<p>단, <code>ROWNUM</code>과 <code>ORDER BY</code>를 함께 사용할 때는 SQL 계층이 매우 중요하다.</p>
+<p>정렬된 결과에서 상위 N건을 가져오려면 일반적으로:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a><span class="p">)</span>
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">ROWNUM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">:</span><span class="n">cnt</span><span class="p">;</span>
+</span></code></pre></div>
+<p>처럼 <strong>정렬을 인라인 뷰 내부에서 수행하고 바깥에서 ROWNUM을 적용</strong>하는
+구조를 사용한다.</p>
+<hr />
+<h1 id="18">18. 관리자 변경이력 생성 예제<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
+<p>다음과 같은 원본 이력이 있다고 가정한다.</p>
+<p>계좌   WRAP상품     계약 변경일     관리자</p>
+<hr />
+<p>A      P01             1 20260101   1001
+  A      P01             1 20260201   1001
+  A      P01             1 20260301   2001
+  A      P01             1 20260401   2001
+  A      P01             1 20260501   3001</p>
+<h3 id="step-1-lag">STEP 1. LAG 적용<a class="headerlink" href="#step-1-lag" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>변경일      현재    이전
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>20260101    1001    NULL
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>20260201    1001    1001
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>20260301    2001    1001
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>20260401    2001    2001
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>20260501    3001    2001
+</span></code></pre></div>
+<h3 id="step-2">STEP 2. 관리자 변경점만 추출<a class="headerlink" href="#step-2" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>20260101    1001
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>20260301    2001
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>20260501    3001
+</span></code></pre></div>
+<h3 id="step-3">STEP 3. 관리기간 구성<a class="headerlink" href="#step-3" title="Permanent link">&para;</a></h3>
+<p>개념적으로:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>관리자 1001 : 20260101 ~ 20260228
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>관리자 2001 : 20260301 ~ 20260430
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>관리자 3001 : 20260501 ~ 현재
+</span></code></pre></div>
+<p>와 같은 관리구간을 만들 수 있다.</p>
+<p>실제 종료일 산출은 기존 SQL의 계약해지일, 기준일, 최대일자 등의 조건을
+함께 반영해야 한다.</p>
+<hr />
+<h1 id="19-sql">19. 신규 SQL을 간소화할 때의 판단 기준<a class="headerlink" href="#19-sql" title="Permanent link">&para;</a></h1>
+<p>현재 SQL 전체를 그대로 복제할 필요는 없다.</p>
+<p>신규 화면의 요구 컬럼이 예를 들어:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>고객식별번호
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>관리사원번호
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>관리시작일
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>관리종료일
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>계좌번호
+</span></code></pre></div>
+<p>정도라면 다음 요소는 요구사항에 따라 제거할 수 있다.</p>
+<h3 id="_6">제거 검토 가능<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>고객명 조회 함수</li>
+<li>관리자명 조회 함수</li>
+<li>평가금액 상관 서브쿼리</li>
+<li>화면에 사용하지 않는 WRAP 부가정보</li>
+<li>Continuation 페이징</li>
+<li>화면에서 사용하지 않는 표시용 컬럼 가공</li>
+</ul>
+<h3 id="_7">유지 여부를 반드시 검토<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>다음은 단순히 복잡하다는 이유로 제거하면 안 된다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>모고객 → CPIN 조회
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>현재/과거 관리자 이력 결합
+</span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>WRAP 계약 식별키
+</span><span id="__span-57-4"><a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>변경일 정렬
+</span><span id="__span-57-5"><a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a>LAG() 관리자 비교
+</span><span id="__span-57-6"><a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a>관리기간 계산
+</span></code></pre></div>
+<p>특히 <strong>현재 관리자만 조회하면 과거 관리자 변경이력을 재구성할 수 없다.</strong></p>
+<hr />
+<h1 id="20">20. 신규 쿼리 설계 시 권장 접근<a class="headerlink" href="#20" title="Permanent link">&para;</a></h1>
+<p>복잡한 기존 SQL을 한 번에 줄이기보다 단계별로 결과를 확인하는 것이
+안전하다.</p>
+<h2 id="step-1-">STEP 1 --- 대상 고객 확인<a class="headerlink" href="#step-1-" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">CPIN</span><span class="p">,</span>
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">       </span><span class="n">MNGM_DEPT_CD</span>
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">CRM1000M</span>
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">MO_CPIN</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">mo_cpin</span>
+</span><span id="__span-58-5"><a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a><span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">MNGM_DEPT_CD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">mngm_dept_cd</span><span class="p">;</span>
+</span></code></pre></div>
+<p>먼저 대상 <code>CPIN</code>이 정확히 나오는지 확인한다.</p>
+<h2 id="step-2-wrap">STEP 2 --- 대상 계좌/WRAP 계약 확인<a class="headerlink" href="#step-2-wrap" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>CPIN
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>  ↓
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>AACNO
+</span><span id="__span-59-4"><a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a>  ↓
+</span><span id="__span-59-5"><a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a>WRAP_PDCD
+</span><span id="__span-59-6"><a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>WRAP_CTSN
+</span></code></pre></div>
+<p>여기까지는 이력 계산 없이 <strong>조회 대상 집합이 맞는지</strong>만 확인한다.</p>
+<h2 id="step-3-">STEP 3 --- 현재 + 과거 관리자 이력 구성<a class="headerlink" href="#step-3-" title="Permanent link">&para;</a></h2>
+<p><code>UNION</code> 또는 적절한 결합으로 시간순 이력을 만든다.</p>
+<h2 id="step-4-lag">STEP 4 --- <code>LAG()</code>만 추가<a class="headerlink" href="#step-4-lag" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="n">LAG</span><span class="p">(</span><span class="n">MNGM_EMPNO</span><span class="p">)</span>
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AACNO</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP_PDCD</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP_CTSN</span>
+</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">CHNG_DT</span>
+</span><span id="__span-60-5"><a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>이 단계에서는 관리기간을 계산하지 말고 이전 관리자 값이 정확한지만
+확인한다.</p>
+<h2 id="step-5-">STEP 5 --- 변경점 필터<a class="headerlink" href="#step-5-" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="err">현재관리자</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="err">이전관리자</span>
+</span></code></pre></div>
+<p>를 적용한다.</p>
+<h2 id="step-6-">STEP 6 --- 관리기간 계산<a class="headerlink" href="#step-6-" title="Permanent link">&para;</a></h2>
+<p>변경점이 정확한 것을 확인한 후 시작일/종료일을 계산한다.</p>
+<h2 id="step-7-">STEP 7 --- 부가정보 결합<a class="headerlink" href="#step-7-" title="Permanent link">&para;</a></h2>
+<p>마지막에:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>고객명
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>관리자명
+</span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>평가금액
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>표시용 컬럼
+</span></code></pre></div>
+<p>등을 추가한다.</p>
+<p>이 순서가 디버깅과 검증에 가장 유리하다.</p>
+<hr />
+<h1 id="21-sql">21. 주요 SQL 함수/문법 요약<a class="headerlink" href="#21-sql" title="Permanent link">&para;</a></h1>
+<p>함수/문법        목적                       이 SQL에서의 역할</p>
+<hr />
+<p><code>LAG()</code>          이전 행의 값 조회          이전 관리자 확인
+  <code>OVER()</code>         분석 함수 범위 정의        행을 유지하면서 이력 계산
+  <code>PARTITION BY</code>   분석 대상 그룹 분리        WRAP 계약별 계산
+  <code>ORDER BY</code>       행 순서 결정               관리자 변경 순서 결정
+  <code>MIN() OVER()</code>   그룹 내 최소값             최초 기준일/시작일 계산
+  <code>MAX() OVER()</code>   그룹 내 최대값             최종 기준일 계산
+  <code>NVL()</code>          NULL 치환                  이전 관리자/평가금액 처리
+  <code>CASE WHEN</code>      조건별 값 반환             관리종료일 등의 표시값 가공
+  <code>TO_DATE()</code>      문자열 → 날짜              날짜 연산
+  <code>TO_CHAR()</code>      날짜 → 문자열              YYYYMMDD 형식 반환
+  <code>SUM()</code>          합계                       평가금액 합산
+  <code>UNION</code>          두 결과 결합 + 중복 제거   현재/과거 이력 통합
+  <code>ROWNUM</code>         행 번호/건수 제한          페이징 건수 제한
+  상관 서브쿼리    현재 행 기준 추가 조회     평가금액 조회</p>
+<hr />
+<h1 id="22">22. 핵심 정리<a class="headerlink" href="#22" title="Permanent link">&para;</a></h1>
+<p>이 SQL을 이해할 때 가장 중요한 포인트는 <strong>계좌 조회 SQL이 아니라 관리자
+변경이력을 재구성하는 SQL</strong>이라는 점이다.</p>
+<p>전체 핵심 흐름은 다음 한 줄로 정리할 수 있다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>모고객
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>→ 소속 고객(CPIN)
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>→ 계좌/WRAP 계약
+</span><span id="__span-63-4"><a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>→ 현재 + 과거 관리자 이력
+</span><span id="__span-63-5"><a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>→ 시간순 정렬
+</span><span id="__span-63-6"><a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a>→ LAG로 이전 관리자 확인
+</span><span id="__span-63-7"><a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a>→ 관리자 변경점 추출
+</span><span id="__span-63-8"><a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a>→ 관리기간 계산
+</span><span id="__span-63-9"><a id="__codelineno-63-9" name="__codelineno-63-9" href="#__codelineno-63-9"></a>→ 평가금액 등 부가정보
+</span><span id="__span-63-10"><a id="__codelineno-63-10" name="__codelineno-63-10" href="#__codelineno-63-10"></a>→ 정렬/페이징
+</span></code></pre></div>
+<p>따라서 신규 SQL을 간소화할 때의 원칙은:</p>
+<blockquote>
+<p><strong>출력용 부가 로직은 줄일 수 있지만, 관리자 변경이력을 정확하게
+재구성하는 핵심 데이터 흐름은 보존한다.</strong></p>
+</blockquote>
+<p>특히 <code>LAG()</code> 자체보다 더 중요한 것은 <code>LAG()</code>에 들어가기 전의 데이터가
+<strong>하나의 WRAP 계약에 대한 현재/과거 이력을 빠짐없이 시간순으로 구성하고
+있는가</strong>이다.</p>
+<p><code>LAG()</code>는 이미 만들어진 행의 순서를 비교하는 함수일 뿐, 누락된 과거
+이력을 만들어 주지는 않는다.</p>
+<hr />
+<h2 id="23">23. 후속 분석 항목<a class="headerlink" href="#23" title="Permanent link">&para;</a></h2>
+<p>향후 실제 신규 쿼리를 작성할 때는 기존 SQL의 각 계층을 다음 기준으로
+다시 분류하는 것이 좋다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>[필수]
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>- 모고객/관리부서 조건
+</span><span id="__span-64-3"><a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>- CPIN 조회
+</span><span id="__span-64-4"><a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>- WRAP 계약 식별
+</span><span id="__span-64-5"><a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>- 관리자 이력
+</span><span id="__span-64-6"><a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>- 변경일
+</span><span id="__span-64-7"><a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a>- 관리자 변경점 판별
+</span><span id="__span-64-8"><a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a>
+</span><span id="__span-64-9"><a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a>[요구사항에 따라 선택]
+</span><span id="__span-64-10"><a id="__codelineno-64-10" name="__codelineno-64-10" href="#__codelineno-64-10"></a>- 관리 시작/종료일
+</span><span id="__span-64-11"><a id="__codelineno-64-11" name="__codelineno-64-11" href="#__codelineno-64-11"></a>- 평가금액
+</span><span id="__span-64-12"><a id="__codelineno-64-12" name="__codelineno-64-12" href="#__codelineno-64-12"></a>- 고객명
+</span><span id="__span-64-13"><a id="__codelineno-64-13" name="__codelineno-64-13" href="#__codelineno-64-13"></a>- 관리자명
+</span><span id="__span-64-14"><a id="__codelineno-64-14" name="__codelineno-64-14" href="#__codelineno-64-14"></a>- 페이징
+</span><span id="__span-64-15"><a id="__codelineno-64-15" name="__codelineno-64-15" href="#__codelineno-64-15"></a>- 표시용 날짜 가공
+</span><span id="__span-64-16"><a id="__codelineno-64-16" name="__codelineno-64-16" href="#__codelineno-64-16"></a>
+</span><span id="__span-64-17"><a id="__codelineno-64-17" name="__codelineno-64-17" href="#__codelineno-64-17"></a>[검증 필요]
+</span><span id="__span-64-18"><a id="__codelineno-64-18" name="__codelineno-64-18" href="#__codelineno-64-18"></a>- UNION의 중복 제거 필요성
+</span><span id="__span-64-19"><a id="__codelineno-64-19" name="__codelineno-64-19" href="#__codelineno-64-19"></a>- 현재 정보와 과거 이력의 경계
+</span><span id="__span-64-20"><a id="__codelineno-64-20" name="__codelineno-64-20" href="#__codelineno-64-20"></a>- 동일 변경일 데이터 발생 가능성
+</span><span id="__span-64-21"><a id="__codelineno-64-21" name="__codelineno-64-21" href="#__codelineno-64-21"></a>- LAG ORDER BY의 정렬키 충분성
+</span><span id="__span-64-22"><a id="__codelineno-64-22" name="__codelineno-64-22" href="#__codelineno-64-22"></a>- '99991231'의 정확한 업무 의미
+</span><span id="__span-64-23"><a id="__codelineno-64-23" name="__codelineno-64-23" href="#__codelineno-64-23"></a>- 관리기간 종료일 계산 규칙
+</span></code></pre></div>
+<p>이 항목들을 확인한 후 신규 SQL을 작성하면 기존 쿼리보다 훨씬 짧게
+만들면서도 업무 로직은 유지할 수 있다.</p>
+<hr />
+<blockquote>
+<p><strong>작성 기준</strong>\
+본 문서는 제공된 실행 SQL 화면과 CRM1000M/ACC1000M 논리·물리 모델
+화면을 기준으로 분석한 가이드이다.\
+실제 운영 반영 전에는 전체 SQL 원문, 테이블 PK/인덱스, 변경이력
+테이블의 정확한 컬럼 정의 및 업무 규칙을 함께 확인해야 한다.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "navigation.prune", "content.code.copy", "content.code.annotate", "content.tabs.link", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
